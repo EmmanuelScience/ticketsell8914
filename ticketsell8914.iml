@@ -17,6 +17,7 @@
         <setting name="provider-name" value="EclipseLink" />
         <datasource-mapping>
           <factory-entry name="laboratoriosPU" />
+          <factory-entry name="songs" value="4596b2c1-6ed6-4744-a76b-3216d3e6aa13" />
         </datasource-mapping>
         <naming-strategy-map />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/WEB-INF/classes/META-INF/persistence.xml" />
