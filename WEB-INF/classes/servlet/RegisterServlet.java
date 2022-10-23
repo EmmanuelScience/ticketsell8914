@@ -100,10 +100,11 @@ public class RegisterServlet extends HttpServlet {
                 String sAlias    = req.getParameter("alias");
                 String sPhone    = req.getParameter("phone");
                 String sEmail    = req.getParameter("email");
+                String sPassword   = req.getParameter("password");
 
 
                 // 4.- Execute the queries
-                st.executeUpdate("insert into Users(name , surname, address, alias, phone, email) value (\""+ sName + "\",\"" + sSurname + "\",\"" + sAddress+ "\",\"" + sAlias+ "\",\"" + sPhone+ "\",\"" + sEmail + "\");");
+                st.executeUpdate("insert into Users(name , surname, address, alias, phone, email, password) value (\""+ sName + "\",\"" + sSurname + "\",\"" + sAddress+ "\",\"" + sAlias+ "\",\"" + sPhone+ "\",\"" + sEmail + "\",\"" + sPassword + "\");");
                 ResultSet rs = st.executeQuery("SELECT * FROM users");
 
                 // 6.- Close the statement and the connection
