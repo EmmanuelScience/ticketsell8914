@@ -13,7 +13,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Objects;
-
+@WebServlet({ "/login.html" })
 public class LoginServlet extends HttpServlet {
 
     public void init() {
@@ -26,14 +26,37 @@ public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
 
-
         // Establece el Content Type
         res.setContentType("text/html");
         PrintWriter out = res.getWriter();
 
         out.println("<HTML>");
-        out.println("<HEAD><TITLE>Login TicketSell</TITLE></HEAD>");
-        out.println("<H1>Login TicketSell</H1></BR>");
+        out.println("<HEAD><TITLE>Login TicketSell</TITLE>" +
+                "<link rel=\"stylesheet\" href=\"style/register_login.css\">\n" +
+                "<link rel=\"stylesheet\" href=\"style/header_footer.css\"></HEAD>");
+        out.println("<header>\n" +
+                "        <div class=\"logo_container\">\n" +
+                "            <img src=\"images/logo.png\" alt=\"TicketSell logo\">\n" +
+                "        </div>\n" +
+                "        <div class=\"main_title\">\n" +
+                "            <h1>ticketsell</h1>\n" +
+                "        </div>\n" +
+                "        <!-- SIGN IN AND LOG IN BUTTONS -->\n" +
+                "        <div class=\"buttons_container\">\n" +
+                "            <button class=\"signup_button\"  onclick=\"window.location.href='register.html';\">Sign up</button>\n" +
+                "            <button class=\"login_button\" onclick=\"window.location.href='login.html';\">Log in</button>\n" +
+                "        </div>\n" +
+                "        <!-- REGISTERED HEADER CHANGES -->\n" +
+                "        <div class=\"registered_container\">\n" +
+                "            <img id=\"messages\" src=\"images/icons/dm.png\" alt=\"send a message\" />\n" +
+                "            <div id=\"profile_info_div\">\n" +
+                "                <img id=\"user-profile-pic\" src=\"images/avatars/default.png\" alt=\"User's profile picture\" />\n" +
+                "                <label id=\"username-label\"></label>\n" +
+                "            </div>\n" +
+                "            <button class=\"logout_button\">Log out</button>\n" +
+                "        </div>\n" +
+                "    </header>" +
+                "<H1 id=\"page_title\">Login TicketSell</H1></BR>");
         out.println("<FORM METHOD=\"POST\" ACTION=\"" + "\">"); // Se llama a si mismo por POST
         out.println("<label for=\"email\">Email address: </label>" +
                 "<input type=\"text\" id=\"email\" name=\"email\"/><br><br>" +
@@ -41,8 +64,16 @@ public class LoginServlet extends HttpServlet {
                 "<input type=\"password\" id=\"password\" name=\"password\"/><br><br>" +
                 "<input type=Submit value=\"Login\" />");
 
-        out.println("</FORM>");
-        out.println("</BODY></HTML>");
+        out.println("</FORM></BODY>" +
+                "<footer>\n" +
+                "    <div class=\"logo_container\">\n" +
+                "        <img src=\"images/logo.png\" alt=\"TicketSell logo\">\n" +
+                "    </div>\n" +
+                "    <div class=\"main_title\">\n" +
+                "        <h1>ticketsell</h1>\n" +
+                "    </div>\n" +
+                "</footer>" +
+                "</HTML>");
 
         out.close();
     }
@@ -94,6 +125,7 @@ public class LoginServlet extends HttpServlet {
                         if (Objects.equals(sPassw, rs.getString("password"))) {
                             String sName = rs.getString("name");
                             out2.println("<h2> Welcome again, "+sName+"! </h2>");
+                            // TODO: LINK TO LOGGED PAGE
                             break;
                         } else {
                             out2.println("<h2> Incorrect password. Please, try again.</h2>");

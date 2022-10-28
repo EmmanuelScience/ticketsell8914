@@ -4,6 +4,7 @@ package servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
         import javax.servlet.http.HttpServletRequest;
         import javax.servlet.http.HttpServletResponse;
@@ -19,10 +20,11 @@ import java.util.Objects;
 /**
  * Servlet implementation class UserServlet
  */
+@WebServlet({ "/register.html" })
+
 public class RegisterServlet extends HttpServlet {
 
-
-    ////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////
     public void init() {
 
         // Lee del contexto de servlet (Sesi�n a nivel de aplicaci�n)
@@ -30,7 +32,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
 
@@ -40,9 +42,32 @@ public class RegisterServlet extends HttpServlet {
         PrintWriter out = res.getWriter();
 
         out.println("<HTML>");
-        out.println("<HEAD><TITLE>Register TicketSell</TITLE></HEAD>");
-        //out.println("<BODY bgcolor=\"#ffff66\">");
-        out.println("<H1>Register TicketSell</H1></BR>");
+        out.println("<HEAD><TITLE>Register TicketSell</TITLE>" +
+                "<link rel=\"stylesheet\" href=\"style/register_login.css\">" +
+                "<link rel=\"stylesheet\" href=\"style/header_footer.css\"></HEAD>");
+        out.println("<header>\n" +
+                "        <div class=\"logo_container\">\n" +
+                "            <img src=\"images/logo.png\" alt=\"TicketSell logo\">\n" +
+                "        </div>\n" +
+                "        <div class=\"main_title\">\n" +
+                "            <h1>ticketsell</h1>\n" +
+                "        </div>\n" +
+                "        <!-- SIGN IN AND LOG IN BUTTONS -->\n" +
+                "        <div class=\"buttons_container\">\n" +
+                "            <button class=\"signup_button\"  onclick=\"window.location.href='register.html';\">Sign up</button>\n" +
+                "            <button class=\"login_button\" onclick=\"window.location.href='login.html';\">Log in</button>\n" +
+                "        </div>\n" +
+                "        <!-- REGISTERED HEADER CHANGES -->\n" +
+                "        <div class=\"registered_container\">\n" +
+                "            <img id=\"messages\" src=\"images/icons/dm.png\" alt=\"send a message\" />\n" +
+                "            <div id=\"profile_info_div\">\n" +
+                "                <img id=\"user-profile-pic\" src=\"images/avatars/default.png\" alt=\"User's profile picture\" />\n" +
+                "                <label id=\"username-label\"></label>\n" +
+                "            </div>\n" +
+                "            <button class=\"logout_button\">Log out</button>\n" +
+                "        </div>\n" +
+                "    </header>" +
+                "<H1 id=\"page_title\">Register TicketSell</H1></BR>");
         out.println("<FORM METHOD=\"POST\" ACTION=\"" + "\">"); // Se llama as� mismo por POST
         out.println("<label for=\"name\">Name: </label>\n" +
                 "    <input type=\"text\" id=\"name\" name=\"name\" value=\"\" /><br><br>\n" +
@@ -58,15 +83,23 @@ public class RegisterServlet extends HttpServlet {
                         "    <input type=\"text\" id=\"phone\" name=\"phone\" value=\"\" /><br><br>\n" +
                         "    <label for=\"address\">Address: </label>\n" +
                         "    <input type=\"text\" id=\"address\" name=\"address\" value=\"\" /><br><br>"+
-                "<input type=Submit value=\"Register\" />");
+                        "<input type=Submit value=\"Register\" />");
 
-        out.println("</FORM>");
-        out.println("</BODY></HTML>");
+        out.println("</FORM></BODY>" +
+                "<footer>\n" +
+                "    <div class=\"logo_container\">\n" +
+                "        <img src=\"images/logo.png\" alt=\"TicketSell logo\">\n" +
+                "    </div>\n" +
+                "    <div class=\"main_title\">\n" +
+                "        <h1>ticketsell</h1>\n" +
+                "    </div>\n" +
+                "</footer>" +
+                "</HTML>");
 
         out.close();
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
 
@@ -111,6 +144,7 @@ public class RegisterServlet extends HttpServlet {
                 st.close();
                 con.close();
                 out2.println("<h2>User logged succesfully. Welcome, " + sName + "!</h2><BR>");
+                // TODO: LINK TO LOGGED PAGE
 
             }
         } catch (Exception e) {
