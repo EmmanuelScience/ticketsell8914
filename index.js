@@ -3,11 +3,11 @@ function toggle_button(id) {
     if (btn.classList.contains("buttonNotClicked")) {
         btn.classList.remove("buttonNotClicked")
         btn.classList.add("buttonClicked")
-        btn.setAttribute("value", "true")
+        btn.innerHTML = "true"
     } else {
         btn.classList.remove("buttonClicked")
         btn.classList.add("buttonNotClicked")
-        btn.setAttribute("value", "false")
+        btn.innerHTML = "true"
     }
 }
 

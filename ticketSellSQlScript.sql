@@ -69,4 +69,6 @@ insert into Tickets(ticketCode, category, price, user, event)
 select * from Users;
 select * from Events;
 select * from Tickets;
+
+
 commit;
