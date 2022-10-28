@@ -2,14 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <title>Search Events</title>
 </head>
 <body>
 <form METHOD="post" ACTION="search.html">
 
-    Event: <input name="id" value="" />
-    <input type=Submit value="Search Event" />
+    <div class="searchBar">
+        Event: <input name="searchValue" value="" />
+        <input type=Submit value="Search Event" />
+
+        <button id = "btnCity" type="button" name="cityClicked" value="false" class="button buttonNotClicked" onclick="toggle_button('btnCity')">City</button>
+        <button id = "btnEvent" type="button" name="EventClicked" value="false" class="button buttonNotClicked" onclick="toggle_button('btnEvent')">Event</button>
+        <button id = "btnVenue" type="button" name="venueClicked" value="false" class="button buttonNotClicked" onclick="toggle_button('btnVenue')">Venue</button>
+        <button id = "btnDate" type="button" name="dateClicked" value="false" class="button buttonNotClicked" onclick="toggle_button('btnDate')">Date</button>
+        <button id = "btnCategory" type="button" name="categoryClicked" value="false" class="button buttonNotClicked" onclick="toggle_button('btnCategory')">Category</button>
+
+    </div>
+
+
 
 </form>
+
+<script src="index.js"></script>
+
 </body>
 </html>

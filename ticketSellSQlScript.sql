@@ -42,6 +42,26 @@ insert into Users(name, surname, address, alias, phone, email)
 
 insert into Events(eventName, venue, city, country, date, category)
     VALUE ('Arena', 'Venue', 'Madrid', 'Spain', '2022-12-31 23:59:59', 'musical');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'O2', 'Paris', 'France', '2022-12-31 23:59:59', 'theater');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'Venue Cologne', 'Cologne', 'Germany', '2022-12-31 23:59:59', 'Concert');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'Eko hotel', 'Lagos', 'Nigeria', '2022-12-31 23:59:59', 'Festival');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'Casablanca Venue', 'Casablanca', 'Morocco', '2022-12-31 23:59:59', 'Drugs');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'Delhi Venue', 'Delhi', 'India', '2022-12-31 23:59:59', 'Rock');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'Sevilla Venue', 'Sevilla', 'Spain', '2022-12-31 23:59:59', 'musical');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'Venue', 'Malaga', 'Spain', '2022-12-31 23:59:59', 'Rock');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'Venue', 'Madrid', 'Spain', '2022-12-31 23:59:59', 'musical');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'Venue', 'Madrid', 'Spain', '2022-12-31 23:59:59', 'Drugs');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'Venue', 'Madrid', 'Spain', '2022-12-31 23:59:59', 'musical');
 
 insert into Tickets(ticketCode, category, price, user, event)
     VALUE ('1234abcd', 'musical', 2.5, 1, 1);

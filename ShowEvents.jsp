@@ -1,4 +1,5 @@
-<%@ page import="entities.Event" %><%--
+<%@ page import="entities.Event" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: emmao
   Date: 16/10/2022
@@ -11,8 +12,10 @@
     <title> Events </title>
 </head>
 <body>
-<% Event event = (Event) request.getAttribute("eventBean"); %>
+<% ArrayList<Event> event = (ArrayList<Event>) request.getAttribute("events");
+%>
 <form method="post"  action="doUpdate.html">
+    <% %>
     Id: <input name="id" value="<%= event.getId()%>">
     Name: <input name="eventName" value="<%= event.getEventName()%>">
     City: <input name="city" value="<%= event.getCity()%>">
