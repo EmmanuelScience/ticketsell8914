@@ -50,23 +50,13 @@ public class RegisterServlet extends HttpServlet {
                 "            <img src=\"images/logo.png\" alt=\"TicketSell logo\">\n" +
                 "        </div>\n" +
                 "        <div class=\"main_title\">\n" +
-                "            <h1>ticketsell</h1>\n" +
+                "            <a href=\"index.html\">ticketsell</a>\n" +
                 "        </div>\n" +
                 "        <!-- SIGN IN AND LOG IN BUTTONS -->\n" +
                 "        <div class=\"buttons_container\">\n" +
                 "            <button class=\"signup_button\"  onclick=\"window.location.href='register.html';\">Sign up</button>\n" +
                 "            <button class=\"login_button\" onclick=\"window.location.href='login.html';\">Log in</button>\n" +
-                "        </div>\n" +
-                "        <!-- REGISTERED HEADER CHANGES -->\n" +
-                "        <div class=\"registered_container\">\n" +
-                "            <img id=\"messages\" src=\"images/icons/dm.png\" alt=\"send a message\" />\n" +
-                "            <div id=\"profile_info_div\">\n" +
-                "                <img id=\"user-profile-pic\" src=\"images/avatars/default.png\" alt=\"User's profile picture\" />\n" +
-                "                <label id=\"username-label\"></label>\n" +
-                "            </div>\n" +
-                "            <button class=\"logout_button\">Log out</button>\n" +
-                "        </div>\n" +
-                "    </header>" +
+                "        </div></header>" +
                 "<H1 id=\"page_title\">Register TicketSell</H1></BR>");
         out.println("<FORM METHOD=\"POST\" ACTION=\"" + "\">"); // Se llama as� mismo por POST
         out.println("<label for=\"name\">Name: </label>\n" +
@@ -143,8 +133,12 @@ public class RegisterServlet extends HttpServlet {
                 // 6.- Close the statement and the connection
                 st.close();
                 con.close();
-                out2.println("<h2>User logged succesfully. Welcome, " + sName + "!</h2><BR>");
-                // TODO: LINK TO LOGGED PAGE
+                out2.println("<script> alert(\"Welcome, "+sName+"!</script>\");");
+                if (Objects.equals(sName.toLowerCase(),"admin")){
+                    out2.println("<script>window.location.href='loggedAdmin.html';</script>");
+                }else{
+                    out2.println("<script> window.location.href='logged.html';</script>");
+                }
 
             }
         } catch (Exception e) {

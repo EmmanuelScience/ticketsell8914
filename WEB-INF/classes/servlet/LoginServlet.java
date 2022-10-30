@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
                 "            <img src=\"images/logo.png\" alt=\"TicketSell logo\">\n" +
                 "        </div>\n" +
                 "        <div class=\"main_title\">\n" +
-                "            <h1>ticketsell</h1>\n" +
+                "            <a href=\"index.html\">ticketsell</a>\n" +
                 "        </div>\n" +
                 "        <!-- SIGN IN AND LOG IN BUTTONS -->\n" +
                 "        <div class=\"buttons_container\">\n" +
@@ -124,8 +124,12 @@ public class LoginServlet extends HttpServlet {
                         exists = 1;
                         if (Objects.equals(sPassw, rs.getString("password"))) {
                             String sName = rs.getString("name");
-                            out2.println("<h2> Welcome again, "+sName+"! </h2>");
-                            // TODO: LINK TO LOGGED PAGE
+                            out2.println("<script> alert(\"Welcome again, "+sName+"!</script>\");");
+                            if (Objects.equals(sName.toLowerCase(),"admin")){
+                                out2.println("<script>window.location.href='loggedAdmin.html';</script>");
+                            }else{
+                                out2.println("<script>window.location.href='logged.html';</script>");
+                            }
                             break;
                         } else {
                             out2.println("<h2> Incorrect password. Please, try again.</h2>");

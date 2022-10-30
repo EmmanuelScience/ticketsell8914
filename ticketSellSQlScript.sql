@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
 
 CREATE TABLE IF NOT EXISTS `Events` (
                                         `eventID` int auto_increment PRIMARY KEY,
-                                        `eventName` varchar(45) NOT NULL,
+                                        `eventName` varchar(45) NOT NULL UNIQUE,
                                         `venue` varchar(45) NOT NULL,
                                         `city` varchar(45) NOT NULL,
                                         `country` varchar(45) NOT NULL,
@@ -52,3 +52,5 @@ select * from Users;
 commit;
 
 select * from Users;
+
+select * from Events;
