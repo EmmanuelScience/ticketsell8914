@@ -5,16 +5,14 @@ import entities.Event;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import javax.transaction.NotSupportedException;
+import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 import static java.lang.System.out;
 
@@ -34,110 +32,45 @@ public class EventServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*String buttonA = request.getParameter("button_a_clicked");
-        if ((Boolean)(request.getSession().getAttribute("buttonAClicked"))) {
-            request.getSession().setAttribute("buttonAClicked", false);
-        } else {
-            request.getSession().setAttribute("buttonAClicked", true);
-        }
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/SearchEvent.jsp");
-        requestDispatcher.forward(request, response);*/
-    }
 
-    public boolean checkToBool(String s) {
-        if (s == null) return false;
-        return s.equals("on");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //example
-        doGet(request, response);
-        // Establece el Content Type
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        String city = "Madrid";
-        out.println("<HTML>");
-        out.println("<HEAD><TITLE>BDServlet</TITLE></HEAD>");
-        out.println("<BODY bgcolor=\"#ffff66\">");
-        out.println("<H1><FONT color=\"#666600\">Database: Users</FONT></H1></BR>");
-        out.println("<FORM METHOD=\"POST\" ACTION=\"" + "\">"); // Se llama as� mismo por POST
-        /*try {
-            String sQuery = "Select e from Event e";
-            String sWhere = "where e.eventName = '"+city+"'";
-            Query q = em.createQuery(sQuery);
-            List lResults = q.getResultList();
-            for (Object o : lResults) {
-                Event event = (Event) o;
-                out.println("<h2>Name " + event.getEventName()+"</h2>");
-            }
-        } catch (Exception e) {
+        Event event = new Event();
+        event.setEventName("name");
+        event.setVenue("venue");
+        event.setCity("city");
+        event.setCountry("county");
+        event.setDate(LocalDateTime.parse("2021-01-01T00:00:00"));
+        event.setCategory("category");
 
-        }*/
-
-        //Search for events
-        String searchValue = request.getParameter("searchValue");
-        boolean cityBtn = checkToBool(request.getParameter("cityClicked"));
-        boolean eventBtn = checkToBool(request.getParameter("eventClicked"));
-        boolean venueBtn = checkToBool(request.getParameter("venueClicked"));
-        boolean categoryBtn = checkToBool(request.getParameter("categoryClicked"));
-        boolean dateBtn = checkToBool(request.getParameter("dateClicked"));
-
-        ArrayList<Event> events = new ArrayList<>();
-        List queryResult;
-        boolean atLeastOneButton = false;
-        System.out.println("HEmos entrado 1");
-        if (cityBtn) {
-            System.out.println("HEmos entrado");
-            String sQuery = "Select e from Event e where e.city = '"+searchValue+"'";
-            //String sWhere = "where e.city = '"+searchValue+"'";
-            queryResult = em.createQuery(sQuery).getResultList();
-            events.addAll(queryResult);
-            atLeastOneButton = true;
-
-        }
-        if (eventBtn) {
-            queryResult = em.createQuery("select * from Events where eventName = '"+searchValue+"'").getResultList();
-            events.addAll(queryResult);
-            atLeastOneButton = true;
-        }
-        if (categoryBtn) {
-            queryResult = em.createQuery("select * from Events where category = '"+searchValue+"'").getResultList();
-            events.addAll(queryResult);
-            atLeastOneButton = true;
-        }
-        if (venueBtn) {
-            queryResult = em.createQuery("select * from Events where venue = '"+searchValue+"'").getResultList();
-            events.addAll(queryResult);
-            atLeastOneButton = true;
-        }
-        if (dateBtn) {
-            queryResult = em.createQuery("select * from Events where date = '"+searchValue+"'").getResultList();
-            events.addAll(queryResult);
-            atLeastOneButton = true;
-        }
-        for (Event event : events) {
-            out.println("<h2>Name " + event+"</h2>");
-        }
-        /*out.println(events);
-        if (!atLeastOneButton) {
-            // search all columns
-        }
         try {
-            if (events.size() == 0) {
-                out.println("Event  not found");
+            ut.begin();
+            em.persist(event);
+            ut.commit();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+        String id = request.getParameter("id");
+        int idInt = Integer.parseInt(id);
+        //To search A song
+        try {
+            event = em.find(Event.class, idInt );
+            if (event == null) {
+                out.println("Song not found");
             } else {
-                request.setAttribute("events", events);
+                request.setAttribute("eventBean", event);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ShowEvents.jsp");
                 requestDispatcher.forward(request, response);
             }
 
         } catch (Exception e) {
             out.println("Error");
-        }*/
-    }
-
-    private void toggleButton() {
-
+        }
     }
 }
