@@ -187,7 +187,7 @@ public class RegisterEventServlet extends HttpServlet {
 
             ev1.setCategory("cat");
             ev1.setEventName("name");
-            //ev1.setDate("surname test");
+            ev1.setDate(LocalDateTime.parse("2022-12-11T00:11:12"));
             ev1.setCity("city test");
             ev1.setVenue("ven test");
             ev1.setCountry("country test");

@@ -13,8 +13,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Objects;
-@WebServlet({ "/login.html" })
-public class LoginServlet extends HttpServlet {
+
+@WebServlet({ "/loggedAdmin.html" })
+public class AdminServlet extends HttpServlet {
 
     public void init() {
 
@@ -31,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = res.getWriter();
 
         out.println("<HTML>");
-        out.println("<HEAD><TITLE>Login TicketSell</TITLE>" +
+        out.println("<HEAD><TITLE>Admin TicketSell</TITLE>" +
                 "<link rel=\"stylesheet\" href=\"style/register_login.css\">\n" +
                 "<link rel=\"stylesheet\" href=\"style/header_footer.css\"></HEAD>");
         out.println("<header>\n" +
@@ -39,20 +40,87 @@ public class LoginServlet extends HttpServlet {
                 "            <img src=\"images/logo.png\" alt=\"TicketSell logo\">\n" +
                 "        </div>\n" +
                 "        <div class=\"main_title\">\n" +
-                "            <a href=\"index.html\">ticketsell</a>\n" +
+                "            <a href=\"loggedAdmin.html\">ticketsell</a>\n" +
+                "        </div>\n"+
+                "        <!-- REGISTERED HEADER CHANGES -->\n" +
+                "        <div class=\"registered_container\">\n" +
+                "            <img id=\"messages\" src=\"images/icons/dm.png\" alt=\"send a message\" />\n" +
+                "            <div id=\"profile_info_div\">\n" +
+                "                <img id=\"user-profile-pic\" src=\"images/avatars/Admin.png\" alt=\"Admin's profile picture\" />\n" +
+                "                <label id=\"username-label\"></label>\n" +
+                "            </div>\n" +
+                "            <button class=\"logout_button\">Log out</button>\n" +
                 "        </div>\n" +
-                "        <!-- SIGN IN AND LOG IN BUTTONS -->\n" +
-                "        <div class=\"buttons_container\">\n" +
-                "            <button class=\"signup_button\"  onclick=\"window.location.href='register.html';\">Sign up</button>\n" +
-                "            <button class=\"login_button\" onclick=\"window.location.href='login.html';\">Log in</button>\n" +
-                "        </div></header>" +
-                "<H1 id=\"page_title\">Login TicketSell</H1></BR>");
-        out.println("<FORM METHOD=\"POST\" ACTION=\"" + "\">"); // Se llama a si mismo por POST
-        out.println("<label for=\"email\">Email address: </label>" +
-                "<input type=\"text\" id=\"email\" name=\"email\"/><br><br>" +
-                "<label for=\"password\">Password: </label>" +
-                "<input type=\"password\" id=\"password\" name=\"password\"/><br><br>" +
-                "<input type=Submit value=\"Login\" />");
+                "    </header>" +
+                "<H1 id=\"page_title\">Admin changes in TicketSell TicketSell</H1></BR>");
+
+        // EVENTS VIEW
+
+        String database = "ticketselldb";
+        String servername = "localhost";
+        String port = "3306";
+        String username  = "root";
+        String password  = "1234";
+
+        try {
+
+            // 1- Load driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            // 2- Obtain a Connection object --> con
+            String url = "";
+            Connection con = null;
+            con = DriverManager.getConnection("jdbc:mysql://"+servername+":"+port+"/"+database+"?useSSL=false& serverTimezone=UTC&allowPublicKeyRetrieval=true", username, password);
+
+            if (con==null){
+                System.out.println("--->UNABLE TO CONNECT TO SERVER:" + servername);
+            } else {
+
+                // 3- Obtain an Statement object -> st
+                Statement st = con.createStatement();
+
+                String sEmail    = req.getParameter("email");
+                String sPassw    = req.getParameter("password");
+
+                System.out.println("email: " + sEmail);
+                System.out.println("password: " + sPassw);
+
+                // 4.- Execute the queries
+                ResultSet rs = st.executeQuery("SELECT * FROM users");
+                // 5.- Iterate through the ResultSet obtained
+                int exists = 0;
+                while (rs.next()) {
+                    String inputEmail = rs.getString("email");
+                    if (Objects.equals(sEmail, inputEmail)) {
+                        exists = 1;
+                        if (Objects.equals(sPassw, rs.getString("password"))) {
+                            String sName = rs.getString("name");
+                            out.println("<script> alert(\"Welcome again, "+sName+"!</script>\");");
+                            if (Objects.equals(sName.toLowerCase(),"admin")){
+                                out.println("<script>window.location.href='loggedAdmin.html';</script>");
+                            }else{
+                                out.println("<script>window.location.href='logged.html';</script>");
+                            }
+                            break;
+                        } else {
+                            out.println("<h2> Incorrect password. Please, try again.</h2>");
+                            break;
+                        }
+                    }
+                }
+                if (exists == 0){
+                    out.println("<h2>This email is not registered. Please, register.</h2>");
+                }
+                // 6.- Close the statement and the connection
+                st.close();
+                con.close();
+
+            }
+        } catch (Exception e) {
+            out.println("<FONT color=\"#ff0000\">" + e.getMessage() + "</FONT><BR>");
+        }
+        out.println("</BODY></HTML>");
+
+
 
         out.println("</FORM></BODY>" +
                 "<footer>\n" +
