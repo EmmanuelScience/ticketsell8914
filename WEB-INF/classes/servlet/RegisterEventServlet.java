@@ -1,28 +1,39 @@
 package servlet;
 
 
+import entities.Event;
+
+import javax.annotation.Resource;
+import javax.persistence.*;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.UserTransaction;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
-/**
- * Servlet implementation class UserServlet
- */
-@WebServlet({ "/registerEvent.html" })
+import static java.lang.System.out;
+
+@WebServlet({ "/RegisterEventServlet", "/createEvent.html" })
 
 public class RegisterEventServlet extends HttpServlet {
 
-    //////////////////////////////
+    @PersistenceContext(unitName="ticketSell")
+    private EntityManager em;
+
+    @Resource
+    private UserTransaction ut;
+
     public void init() {
 
         // Lee del contexto de servlet (Sesi�n a nivel de aplicaci�n)
@@ -30,11 +41,76 @@ public class RegisterEventServlet extends HttpServlet {
     }
 
 
-    //////////////////////////////
+    @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
 
+        /****************************************************************************
+         ****************** CREATION OF A NEW USER USING JPA ************************
+         ****************************************************************************/
 
+
+
+        /****************************************************************************
+         ****************** RETRIEVE THE USERS USING JDBC ***************************
+         ***************************************************************************
+
+
+
+        String database = "usersdb";
+        String servername = "localhost";
+        String port = "3306";
+        String username  = "root"; // complete
+        String password  = "admin"; // complete
+
+        // Establece el Content Type
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+
+        out.println("<HTML>");
+        out.println("<HEAD><TITLE>BDServlet</TITLE></HEAD>");
+        out.println("<BODY bgcolor=\"#ffff66\">");
+        out.println("<H1><FONT color=\"#666600\">Database: Users</FONT></H1></BR>");
+        out.println("<FORM METHOD=\"POST\" ACTION=\"" + "\">"); // Se llama as� mismo por POST
+
+
+        try {
+
+
+            // 1- Load driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            // 2- Obtain a Connection object --> con
+            String url = "jdbc:mysql://"+servername+":"+port+"/"+database;
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/usersdb", username, password);
+            if (con==null){
+                System.out.println("--->UNABLE TO CONNECT TO SERVER:" + servername);
+            } else {
+
+
+                // 3- Obtain an Statement object -> st
+
+                Statement st = con.createStatement();
+
+                // Retrieve users from the ResultSet --> rs
+                ResultSet rs = st.executeQuery("Select * from events");
+
+                out.println("<FONT color=\"#ff0000\">Users:</FONT><BR>");
+                while (rs.next()){
+                    out.println("<FONT color=\"#ff0000\">"+rs.getString("idusers")+" - "+rs.getString("name")+"  "+rs.getString("surename")+"</FONT><BR>");
+                }
+
+            }
+        } catch (Exception e) {
+            out.println("<FONT color=\"#ff0000\">"+e.getMessage()+"</FONT><BR>");
+        }
+
+
+        out.println("</FORM>");
+        out.println("</BODY></HTML>");
+
+        out.close();
+    */
+        /*
         // Establece el Content Type
         res.setContentType("text/html");
         PrintWriter out = res.getWriter();
@@ -88,11 +164,109 @@ public class RegisterEventServlet extends HttpServlet {
                 "</HTML>");
 
         out.close();
+                 */
     }
 
     //////////////////////////////
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
+
+        // 1 Create the factory of Entity Manager
+        //EntityManagerFactory factory = Persistence.createEntityManagerFactory("ticketSell");
+
+        // 2 Create the Entity Manager
+        //EntityManager em = factory.createEntityManager();
+
+        // 3 Get one EntityTransaction and start it
+        //EntityTransaction tx = em.getTransaction();
+        try {
+            ut.begin();
+
+            // Create one entity user, set its attributes and make it persist
+            entities.Event ev1 = new entities.Event();
+
+            ev1.setCategory("cat");
+            ev1.setEventName("name");
+            //ev1.setDate("surname test");
+            ev1.setCity("city test");
+            ev1.setVenue("ven test");
+            ev1.setCountry("country test");
+
+            em.persist(ev1);
+
+            // 4 Commmit the transaction
+            ut.commit();
+
+            // 5 Close the manager
+            em.close();
+        }catch (Exception e) {
+            out.println("<FONT color=\"#ff0000\">" + e.getMessage() + "</FONT><BR>");
+        }
+
+
+
+        /*
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+
+        out.println("<HTML>");
+        out.println("<HEAD><TITLE>BDServlet</TITLE></HEAD>");
+        out.println("<BODY bgcolor=\"#ffff66\">");
+        out.println("<H1><FONT color=\"#666600\">Database: Users</FONT></H1></BR>");
+        out.println("<FORM METHOD=\"POST\" ACTION=\"" + "\">"); // Se llama as� mismo por POST
+
+
+        Event newEvent = new Event();
+        newEvent.setEventName("myName");
+        newEvent.setVenue("ven");
+        newEvent.setCity("city");
+        newEvent.setCountry("count");
+        //newEvent.setDate(LocalDateTime.parse("2022-12-30"));
+        newEvent.setCategory("cat");
+
+        try {
+            out.println("<FONT color=\"#ff0000\">1111111111111</FONT><BR>");
+            ut.begin();
+            out.println("<FONT color=\"#ff0000\">222222222222222222</FONT><BR>");
+            em.persist(newEvent);
+            out.println("<FONT color=\"#ff0000\">3333333</FONT><BR>");
+            ut.commit();
+            out.println("<FONT color=\"#ff0000\">44444444444</FONT><BR>");
+            //newEvent.setEventName("changedName");
+            out.println("<FONT color=\"#ff0000\">555555</FONT><BR>");
+            ut.begin();
+            out.println("<FONT color=\"#ff0000\">666666</FONT><BR>");
+            newEvent = em.merge(newEvent);
+            out.println("<FONT color=\"#ff0000\">77777777</FONT><BR>");
+            ut.commit();
+            out.println("<FONT color=\"#ff0000\">888888</FONT><BR>");
+            out.println("<FONT color=\"#ff0000\">5</FONT><BR>");
+            Event event= em.find(Event.class, 1);
+            out.println("<FONT color=\"#ff0000\">ghrthrthrth"+event.getEventName()+"</FONT><BR>");
+
+
+        } catch (Exception e) {
+            out.println("<FONT color=\"#ff0000\">444444444444444"+e.getMessage()+"</FONT><BR>");
+        };
+
+        out.println("</FORM>");
+        out.println("</BODY></HTML>");
+
+        out.close();
+
+
+
+
+        /*
+        String SeventName = req.getParameter("eventname");
+        String Scategory = req.getParameter("category");
+        String Scity = req.getParameter("city");
+        String Svenue = req.getParameter("venue");
+        String Scountry = req.getParameter("country");
+        String Sdate = req.getParameter("date");
+
+
+
 
         String database = "ticketselldb";
         String servername = "localhost";
@@ -147,7 +321,7 @@ public class RegisterEventServlet extends HttpServlet {
             } else { //another error
                 out2.println("<FONT color=\"#ff0000\">" + e.getMessage() + " Please, go back and solve it.</FONT><BR>");
             }
-        }
+        }*/
 
         }
 
