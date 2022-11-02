@@ -39,17 +39,22 @@ public class DeleteEventServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        out.println("a");
         String id = request.getParameter("id");
         int idInt = Integer.parseInt(id);
-
+        out.println("bbbbbbbbbbbbbbbbbbbbbbb");
         try {
             Event event = em.find(Event.class, idInt );
             if (event == null) {
+                out.println("c");
                 out.println("Event not found");
             } else {
-                em.getTransaction().begin();
-                em.remove(event);
-                em.getTransaction().commit();
+                out.println("d");
+                ut.begin();
+                out.println("e");
+                em.persist(event);
+                out.println("f");
+                ut.commit();
             }
 
         } catch (Exception e) {
