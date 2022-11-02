@@ -5,9 +5,13 @@ import entities.Event;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -16,8 +20,8 @@ import java.util.Date;
 
 import static java.lang.System.out;
 
-@WebServlet({ "/EventServlet", "/search.html", "/doUpdate.html" })
-public class EventServlet extends HttpServlet {
+@WebServlet({ "/createEvent.html" })
+public class RegisterEventServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @PersistenceContext(unitName="ticketSell")
@@ -40,12 +44,13 @@ public class EventServlet extends HttpServlet {
 
 
         Event event = new Event();
-        event.setEventName("narrrrme");
-        event.setVenue("venue");
-        event.setCity("city");
-        event.setCountry("county");
-        event.setDate(LocalDate.parse("2021-01-01"));
-        event.setCategory("category");
+        event.setEventName(request.getParameter("eventname"));
+        event.setVenue(request.getParameter("venue"));
+        event.setCity(request.getParameter("city"));
+        event.setCountry(request.getParameter("country"));
+        //event.setDate(Date.parse(request.getParameter("date")));
+        event.setDate(LocalDate.parse(request.getParameter("date")));
+        event.setCategory(request.getParameter("category"));
 
         try {
             ut.begin();
@@ -55,7 +60,7 @@ public class EventServlet extends HttpServlet {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+/*
         String id = request.getParameter("id");
         int idInt = Integer.parseInt(id);
         //To search A song
@@ -71,6 +76,6 @@ public class EventServlet extends HttpServlet {
 
         } catch (Exception e) {
             out.println("Error");
-        }
+        }*/
     }
 }

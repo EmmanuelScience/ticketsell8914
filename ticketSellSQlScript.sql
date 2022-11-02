@@ -40,6 +40,9 @@ CREATE TABLE IF NOT EXISTS `Tickets` (
 insert into Users(name, surname, address, alias, phone, email)
     value ('John', 'Doe', 'Su Casa', 'johnny', '+341234567', 'john@email.com');
 
+insert into Users(name, surname, address, alias, phone, email)
+    value ('Admin', 'administrator', 'home', 'admin', '+346234567', 'admin@email.com');
+
 insert into Events(eventName, venue, city, country, date, category)
     VALUE ('Arena', 'Venue', 'Madrid', 'Spain', '2022-12-31 23:59:59', 'musical');
 
