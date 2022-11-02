@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>Admin TicketSell</title>
+  <link rel="stylesheet" href="style/register_login.css">
+  <link rel="stylesheet" href="style/header_footer.css">
+  <link rel="stylesheet" href="style/logged_admin.css">
+</head>
+
+<body>
+<header>
+  <div class="logo_container">
+    <img src="images/logo.png" alt="TicketSell logo">
+  </div>
+  <div class="main_title">
+    <a href="loggedAdmin.html">ticketsell</a>
+  </div>
+  <!-- REGISTERED HEADER  -->
+
+  <div class="registered_container">
+    <img id="messages" src="images/icons/dm.png" alt="send a message">
+    <div id="profile_info_div">
+      <img id="user-profile-pic" src="images/avatars/Admin.png" alt="User's profile picture">
+      <label id="username-label">Admin</label>
+    </div>
+    <button class="logout_button" onclick="window.location.href='loggedAdmin.html'">Log out</button>
+  </div>
+</header>
+<h1 id="page_title">Administer events in TicketSell</h1><br>
+<div class="create_event">
+  <button onclick="window.location.href='registerEvent.html';">Click here to create an event</button>
+</div>
+<form METHOD="post" ACTION="deleteEvent.html">
+
+  Type here the event to delete: <input name="id" value="" />
+  <input type=Submit value="Delete Event" />
+
+</form>
+
+</body></html>

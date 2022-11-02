@@ -15,13 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 import static java.lang.System.out;
 
-@WebServlet({ "/createEvent.html" })
-public class RegisterEventServlet extends HttpServlet {
+@WebServlet({ "/deleteEvent.html" })
+public class DeleteEventServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @PersistenceContext(unitName="ticketSell")
@@ -41,24 +39,21 @@ public class RegisterEventServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-        Event event = new Event();
-        event.setEventName(request.getParameter("eventname"));
-        event.setVenue(request.getParameter("venue"));
-        event.setCity(request.getParameter("city"));
-        event.setCountry(request.getParameter("country"));
-        //event.setDate(Date.parse(request.getParameter("date")));
-        event.setDate(LocalDate.parse(request.getParameter("date")));
-        event.setCategory(request.getParameter("category"));
+        String id = request.getParameter("id");
+        int idInt = Integer.parseInt(id);
 
         try {
-            ut.begin();
-            em.persist(event);
-            ut.commit();
+            Event event = em.find(Event.class, idInt );
+            if (event == null) {
+                out.println("Event not found");
+            } else {
+                em.getTransaction().begin();
+                em.remove(event);
+                em.getTransaction().commit();
+            }
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            out.println("Error");
         }
 /*
         String id = request.getParameter("id");
