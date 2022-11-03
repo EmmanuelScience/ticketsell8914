@@ -1,11 +1,11 @@
 package servlet;
 
 import entities.Event;
+import entities.Ticket;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,10 +16,8 @@ import javax.transaction.UserTransaction;
 import java.io.IOException;
 import java.time.LocalDate;
 
-import static java.lang.System.out;
-
-@WebServlet({ "/deleteEvent.html" })
-public class DeleteEventServlet extends HttpServlet {
+@WebServlet({ "/createTicket.html" })
+public class CreateTicketServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @PersistenceContext(unitName="ticketSell")
@@ -30,7 +28,7 @@ public class DeleteEventServlet extends HttpServlet {
 
     public void init() {
 
-        //ServletContext context = getServletContext();
+        ServletContext context = getServletContext();
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,24 +37,34 @@ public class DeleteEventServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // deleting an event from the database
-        String id = request.getParameter("id_del");
-        int idInt = Integer.parseInt(id);
+
+        //finding event
+        int idEv = Integer.valueOf(request.getParameter("event"));
+
+        //To search A song
         try {
-            Event event = em.find(Event.class, idInt );
+            Event event = em.find(Event.class, idEv );
             if (event == null) {
-                out.println("Event not found");
+                out.println("Song not found");
             } else {
-                ut.begin();
-                if (!em.contains(event)) {
-                    event = em.merge(event);
-                }
-                em.remove(event);
-                ut.commit();
+                Ticket tick = new Ticket();
+                tick.setTicketCode(request.getParameter("ticketcode"));
+                tick.setCategory(request.getParameter("category"));
+                tick.setPrice(Double.valueOf(request.getParameter("price")));
+                //tick.setUser();
+                tick.setEvent(idEv);
             }
 
         } catch (Exception e) {
             out.println("Error");
+
+        try {
+            ut.begin();
+            em.persist(event);
+            ut.commit();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 /*
         String id = request.getParameter("id");
