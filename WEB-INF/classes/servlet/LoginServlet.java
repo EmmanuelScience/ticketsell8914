@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -115,8 +116,12 @@ public class LoginServlet extends HttpServlet {
                         if (Objects.equals(sPassw, rs.getString("password"))) {
                             String sName = rs.getString("name");
                             out2.println("<script> alert(\"Welcome again, "+sName+"!</script>\");");
+                            HttpSession session = request.getSession();
+                            request.setAttribute("user",sName);
+
                             if (Objects.equals(sName.toLowerCase(),"admin")){
                                 out2.println("<script>window.location.href='loggedAdmin.html';</script>");
+
                             }else{
                                 out2.println("<script>window.location.href='logged.html';</script>");
                             }
