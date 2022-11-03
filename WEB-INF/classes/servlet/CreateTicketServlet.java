@@ -12,9 +12,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 import java.io.IOException;
 import java.time.LocalDate;
+
+import static java.lang.System.out;
 
 @WebServlet({ "/createTicket.html" })
 public class CreateTicketServlet extends HttpServlet {
@@ -53,20 +56,19 @@ public class CreateTicketServlet extends HttpServlet {
                 tick.setPrice(Double.valueOf(request.getParameter("price")));
                 //tick.setUser();
                 tick.setEvent(idEv);
+                ut.begin();
+                em.persist(event);
+                ut.commit();
             }
-
-        } catch (Exception e) {
-            out.println("Error");
-
-        try {
-            ut.begin();
-            em.persist(event);
-            ut.commit();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-/*
+
+        HttpSession session = request.getSession();
+        User user =session.getAttribute("user");
+
+        /*
         String id = request.getParameter("id");
         int idInt = Integer.parseInt(id);
         //To search A song

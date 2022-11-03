@@ -18,7 +18,8 @@
         <datasource-mapping>
           <factory-entry name="laboratoriosPU" />
           <factory-entry name="songs" value="4596b2c1-6ed6-4744-a76b-3216d3e6aa13" />
-          <factory-entry name="ticketSell" value="a22347b3-39a0-4365-9c6a-dae5d32cedfd" />
+          <factory-entry name="ticketSell" value="5ac62758-1853-4102-96c2-daf90b334d95" />
+          <factory-entry name="ticketsell8914" />
         </datasource-mapping>
         <naming-strategy-map />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/WEB-INF/classes/META-INF/persistence.xml" />
