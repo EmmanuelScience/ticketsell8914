@@ -1,0 +1,29 @@
+.create_event{
+    min-height: 60%;
+    width: 100%;
+}
+
+.create_event button {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 150%;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 50%;
+    font-weight: bold;
+    background-color: #008db1;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    position: relative;
+    left: 25%;
+    
+}
+
+.create_event button:hover {
+    background-color: #005c74;
+}
