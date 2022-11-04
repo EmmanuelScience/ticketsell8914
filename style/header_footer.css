@@ -133,7 +133,6 @@ header {
 }
 
 
-
 /********************************footer format******************************/
 footer {
     display: flex;
@@ -183,6 +182,8 @@ footer {
     .registered_container {
         width: 100%;
         flex-direction: column;
+        display: flex;
+        right: 0%;
     }
 
     .registered_container button {

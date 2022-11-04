@@ -1,23 +1,27 @@
 package servlet;
 
 import entities.Event;
+import entities.Ticket;
+import entities.User;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 import static java.lang.System.out;
 
-@WebServlet({ "/EventServlet", "/search.html", "/doUpdate.html" })
-public class EventServlet extends HttpServlet {
+@WebServlet({ "/createTicket.html" })
+public class CreateTicketServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @PersistenceContext(unitName="ticketSell")
@@ -38,24 +42,36 @@ public class EventServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //finding event
+        int idEv = Integer.valueOf(request.getParameter("event"));
 
-        Event event = new Event();
-        event.setEventName("narrrrme");
-        event.setVenue("venue");
-        event.setCity("city");
-        event.setCountry("county");
-        event.setDate(LocalDate.parse("2021-01-01"));
-        event.setCategory("category");
-
+        //finding user
+        HttpSession session = request.getSession();
+        int user = (int) session.getAttribute("userid");
+        //creating the event
         try {
-            ut.begin();
-            em.persist(event);
-            ut.commit();
+            Event event = em.find(Event.class, idEv );
+            if (event == null) {
+                out.println("Song not found");
+            } else {
+                Ticket tick = new Ticket();
+                tick.setTicketCode(request.getParameter("ticketcode"));
+                tick.setCategory(request.getParameter("category"));
+                tick.setPrice(Double.valueOf(request.getParameter("price")));
+                tick.setUser(user);
+                tick.setEvent(idEv);
+                ut.begin();
+                em.persist(event);
+                ut.commit();
+            }
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
+
+
+        /*
         String id = request.getParameter("id");
         int idInt = Integer.parseInt(id);
         //To search A song
@@ -71,6 +87,6 @@ public class EventServlet extends HttpServlet {
 
         } catch (Exception e) {
             out.println("Error");
-        }
+        }*/
     }
 }

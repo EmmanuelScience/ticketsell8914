@@ -3,5 +3,6 @@
     <persistence-unit name="ticketSell" transaction-type="JTA">
         <class>entities.User</class>
         <class>entities.Event</class>
+        <class>entities.Ticket</class>
     </persistence-unit>
 </persistence>

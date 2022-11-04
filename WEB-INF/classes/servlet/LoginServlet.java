@@ -123,7 +123,7 @@ public class LoginServlet extends HttpServlet {
                                 out2.println("<script>window.location.href='loggedAdmin.html';</script>");
 
                             }else{
-                                out2.println("<script>window.location.href='logged.html';</script>");
+                                out2.println("<script>window.location.href='loggedUser.html';</script>");
                             }
                             break;
                         } else {

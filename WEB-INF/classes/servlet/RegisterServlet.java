@@ -126,18 +126,18 @@ public class RegisterServlet extends HttpServlet {
                 String sPassword   = req.getParameter("password");
 
 
-                // 4.- Execute the queries
-                st.executeUpdate("insert into Users(name , surname, address, alias, phone, email, password) value (\""+ sName + "\",\"" + sSurname + "\",\"" + sAddress+ "\",\"" + sAlias+ "\",\"" + sPhone+ "\",\"" + sEmail + "\",\"" + sPassword + "\");");
+                // 4 Execute the queries
+                st.executeUpdate("insert into Users(name , surname, address, alias, phone, email, password) value ('" + sName + "','" + sSurname + "','" + sAddress+ "','" + sAlias+ "','" + sPhone+ "','" + sEmail + "','" + sPassword + "');");
                 ResultSet rs = st.executeQuery("SELECT * FROM users");
 
-                // 6.- Close the statement and the connection
+                // 6 Close the statement and the connection
                 st.close();
                 con.close();
                 out2.println("<script> alert(\"Welcome, "+sName+"!</script>\");");
                 if (Objects.equals(sName.toLowerCase(),"admin")){
                     out2.println("<script>window.location.href='loggedAdmin.html';</script>");
                 }else{
-                    out2.println("<script> window.location.href='logged.html';</script>");
+                    out2.println("<script> window.location.href='loggedUser.html';</script>");
                 }
 
             }

@@ -5,19 +5,21 @@ import entities.Event;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 import static java.lang.System.out;
 
-@WebServlet({ "/EventServlet", "/search.html", "/doUpdate.html" })
-public class EventServlet extends HttpServlet {
+@WebServlet({ "/deleteEvent.html" })
+public class DeleteEventServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @PersistenceContext(unitName="ticketSell")
@@ -28,7 +30,7 @@ public class EventServlet extends HttpServlet {
 
     public void init() {
 
-        ServletContext context = getServletContext();
+        //ServletContext context = getServletContext();
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,25 +39,26 @@ public class EventServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-        Event event = new Event();
-        event.setEventName("narrrrme");
-        event.setVenue("venue");
-        event.setCity("city");
-        event.setCountry("county");
-        event.setDate(LocalDate.parse("2021-01-01"));
-        event.setCategory("category");
-
+        // deleting an event from the database
+        String id = request.getParameter("id_del");
+        int idInt = Integer.parseInt(id);
         try {
-            ut.begin();
-            em.persist(event);
-            ut.commit();
+            Event event = em.find(Event.class, idInt );
+            if (event == null) {
+                out.println("Event not found");
+            } else {
+                ut.begin();
+                if (!em.contains(event)) {
+                    event = em.merge(event);
+                }
+                em.remove(event);
+                ut.commit();
+            }
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            out.println("Error");
         }
-
+/*
         String id = request.getParameter("id");
         int idInt = Integer.parseInt(id);
         //To search A song
@@ -71,6 +74,6 @@ public class EventServlet extends HttpServlet {
 
         } catch (Exception e) {
             out.println("Error");
-        }
+        }*/
     }
 }
