@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,19 +62,21 @@ public class EventServlet extends HttpServlet {
             //Advanced search
             String eventName = request.getParameter("eventName");
             String eventDateString = request.getParameter("eventDate");
-            LocalDateTime eventDate = LocalDateTime.now();
+            LocalDate eventDate = LocalDate.parse(eventDateString);
             String eventCity = request.getParameter("eventCity");
             String eventCategory = request.getParameter("eventCategory");
             String eventVenue = request.getParameter("eventVenue");
 
             String sQuery = "SELECT e FROM Event e WHERE " +
                     " e.eventName LIKE :eventName AND" +
+                    " e.date = :eventDate AND" +
                     " e.city LIKE :eventCity AND " +
                     " e.category LIKE :eventCategory AND" +
                     " e.venue LIKE :eventVenue";
             events.addAll(em.createQuery(sQuery, Event.class)
                     .setParameter("eventName", "%" + eventName + "%")
                     .setParameter("eventCity", "%" + eventCity + "%")
+                    .setParameter("eventDate", eventDate)
                     .setParameter("eventCategory", "%" + eventCategory + "%")
                     .setParameter("eventVenue", "%" + eventVenue + "%")
                     .getResultList());

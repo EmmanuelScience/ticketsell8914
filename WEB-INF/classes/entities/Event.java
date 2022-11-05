@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,7 +26,7 @@ public class Event {
     private String country;
 
     @Column(name = "date", nullable = false)
-    private LocalDateTime date;
+    private LocalDate date;
 
     @Column(name = "category", nullable = false, length = 45)
     private String category;
@@ -70,11 +71,11 @@ public class Event {
         this.country = country;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
