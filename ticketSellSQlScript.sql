@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `address` varchar(45) NOT NULL,
   `alias` varchar(45) NOT NULL,
   `phone` varchar(15) NOT NULL,
-  `email` varchar(45) NOT NULL
+  `email` varchar(45) NOT NULL,
+    `password` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -42,8 +43,8 @@ CREATE TABLE IF NOT EXISTS `Tickets` (
 insert into Tickets (ticketCode, category, price, user, event, ticketOwnerName) values ('123456789', 'VIP', 100, 1, 1, 'John Smith');
 
 DELETE FROM events WHERE eventID = 1;
-insert into Users(name, surname, address, alias, phone, email)
-    value ('John', 'Doe', 'Su Casa', 'johnny', '+341234567', 'john@email.com');
+insert into Users(name, surname, address, alias, phone, email, password)
+    value ('John', 'Doe', 'Su Casa', 'johnny', '+341234567', 'john@email.com', '1234');
 
 insert into Events(eventName, venue, city, country, date, category)
     VALUE ('Arena', 'Fabrik', 'Madrid', 'Spain', '2022-12-31 23:59:59', 'musical');
