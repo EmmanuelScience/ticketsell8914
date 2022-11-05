@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "eventID", nullable = false)
+    @Column(name = "ticketID", nullable = false)
     private Integer id;
 
     @Column(name = "ticketCode", nullable = false, length = 45)
@@ -24,6 +24,9 @@ public class Ticket {
 
     @Column(name = "event", nullable = false)
     private Integer event;
+
+    @Column(name = "ticketOwnerName", nullable = false)
+    private String ticketOwnerName;
 
     public Integer getId() {
         return id;
@@ -73,4 +76,11 @@ public class Ticket {
         this.event = event;
     }
 
+    public void setTicketOwnerName(String ticketOwnerName) {
+        this.ticketOwnerName = ticketOwnerName;
+    }
+
+    public String getTicketOwnerName() {
+        return ticketOwnerName;
+    }
 }

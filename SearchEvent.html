@@ -7,14 +7,16 @@
 </head>
 <body>
     <div class="search">
-        <form name = "searchForm" id = "searchForm" METHOD="post" ACTION="search.html">
-            <input type="text"
-                   placeholder=" Search Events"
-                   name="search">
+        <form name = "searchForm" id = "searchForm" METHOD="get" ACTION="search.html">
+            <label>
+                <input type="text"
+                       placeholder=" Search Events"
+                       name="search">
+            </label>
         </form>
     </div>
 
-    <form name = "advForm" id = "advForm" METHOD="post" ACTION="search.html">
+    <form name = "advForm" id = "advForm" METHOD="get" ACTION="search.html">
 
         <div class="buttons_bar">
             <button id = "btnToday"

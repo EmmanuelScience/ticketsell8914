@@ -6,7 +6,7 @@
   Time: 12:25
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title> Events </title>
@@ -14,17 +14,20 @@
 <body>
 <% ArrayList<Event> events = (ArrayList<Event>) request.getAttribute("events");
 %>
-<form method="post"  action="showTickets.html">
+<form method="get"  action="event/tickets.html">
     <% for (Event event : events) { %>
-    <button type="submit"
-        name="eventName"
-        value=<%=event.getId()%>><%=
-        event.getEventName() + " "
-        + event.getCategory() + ""
-        + event.getDate() + " "
-        + event.getVenue() + " "
-        + event.getCity() + " "
-         %><br>
+        <button type="submit"
+            name="eventID"
+            value=<%=event.getId()%>>
+            <%=
+                event.getEventName() + " "
+                + event.getCategory() + ""
+                + event.getDate() + " "
+                + event.getVenue() + " "
+                + event.getCity() + " "
+            %>
+        </button>
+        <br>
     <% } %>
 </form>
 </body>
