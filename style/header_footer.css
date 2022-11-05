@@ -1,0 +1,219 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+/*    **********************all body format**********************************/
+body {
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x:hidden;
+}
+/****************************header format***********************************/
+header {
+    display: flex;
+    background-color: white;
+    width: 100%;
+    max-height: 90px;
+}
+
+.main_title a{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 250%;
+    color:#008db1;
+    padding-top: 10%;
+    text-decoration: none;
+}
+
+.main_title{
+    padding-top: 1%;
+}
+
+.logo_container {
+    display: flex;
+    justify-content: center;
+    width: 12%;
+    margin-left: 2%;
+}
+.logo_container img {
+    width: auto;
+    padding: 2%;
+}
+
+.buttons_container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    right: 3%;
+    padding-top: 1%;
+
+}
+.buttons_container button {
+
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 115%;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    border-radius: 10px;
+    width: 35%;
+    height: 50%;
+    font-weight: bold;
+    background-color: #008db1;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+.buttons_container button:hover {
+    background-color: #005c74;
+}
+
+
+/********LOGGED: profile picture and username*******************/
+.registered_container {
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    width: 25%;
+    display: flex;
+    position: absolute;
+    right: 0%;
+    padding: 1.5%;
+}
+
+.registered_container img {
+    width: 10%;
+    margin-right: 10%;
+    cursor: pointer;
+}
+
+#profile_info_div {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+#profile_info_div label {
+    text-align: center;
+}
+#profile_info_div img {
+    width: 30%;
+    margin: auto;
+}
+
+.logout_button{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 115%;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-left: 10%;
+    margin-right: 5%;
+    border-radius: 30px;
+    width: 35%;
+    font-weight: bold;
+    background-color: #008db1;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 2%;
+}
+
+.logout_container button:hover {
+    background-color: #005c74;
+}
+
+
+/********************************footer format******************************/
+footer {
+    display: flex;
+    background-color: white;
+    width: 100%;
+    max-height: 90px;
+    position: fixed;
+    bottom: 0;
+}
+
+
+
+
+/***************************MOBILE VIEW******************************* */
+@media only screen and (max-width: 768px) {
+
+    .logo_container img{
+        height: 40%;
+    }
+
+    .logo_container {
+        align-items: center;
+        width: 15%;
+        margin-left: 5%;
+    }
+
+    header{
+        height: 30vh;
+    }
+
+    .buttons_container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .buttons_container button {
+        margin-left: 0%;
+        width:80%;
+        margin-bottom: 10%;
+        height: 15%;
+    }
+
+
+    .registered_container {
+        width: 100%;
+        flex-direction: column;
+        display: flex;
+        right: 0%;
+    }
+
+    .registered_container button {
+        margin-left: 0%;
+        width:80%;
+        margin-top: 10%;
+        height: 15%;
+    }
+
+    .registered_container img {
+        width: 25%;
+        margin-bottom: 10%;
+    }
+
+    #profile_info_div {
+        width: 86%;
+
+    }
+
+
+
+    footer {
+        display: flex;
+        background-color: white;
+        width: 100%;
+        height: 15vh;
+    }
+
+}

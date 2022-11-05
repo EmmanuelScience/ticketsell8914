@@ -1,0 +1,56 @@
+/* *************************Sign up and log up forms ********************************** */
+
+#page_title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 4%;
+}
+
+form{
+    width: 100%;
+    justify-content: center;
+    padding-left: 30%;
+    padding-right: 20%;
+}
+label {
+    display: inline-block;
+    width: 30%;
+    font-size: 150%;
+}
+
+input {
+    margin: 1% auto 1%;
+    padding: 1%;
+    width: 50%;
+    border: solid 2px #008db1;
+    border-radius: 15px;
+    font-size: 150%;
+}
+
+input[type="submit"]{
+    background: #008db1;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 115%;
+    transition-duration: 0.4s;
+    border-radius: 15px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-left: 30%;
+    margin-bottom: 20%;
+    margin-bottom: 20%;
+}
+
+input[type="submit"]:hover {
+    background: #005c74;
+
+
+}
+
+
