@@ -6,45 +6,35 @@
     <title>Search Events</title>
 </head>
 <body>
-<form name = "form" id = "form" METHOD="post" ACTION="search.html">
-
-    <div class="searchBar">
-        Event: <input name="searchValue" value="" />
-        <input type=Submit value="Search Event" />
-
-        <h1>Custom Checkboxes</h1>
-        <label class="container">City
-            <input type="checkbox" checked="checked" name="cityClicked">
-            <span class="checkmark"></span>
-        </label>
-        <label class="container">Event
-            <input type="checkbox" name="EventClicked">
-            <span class="checkmark"></span>
-        </label>
-        <label class="container">Venue
-            <input type="checkbox" name="venueClicked">
-            <span class="checkmark"></span>
-        </label>
-        <label class="container">Date
-            <input type="checkbox" name="dateClicked">
-            <span class="checkmark"></span>
-        </label>
-        <label class="container">category
-            <input type="checkbox" name="categoryClicked">
-            <span class="checkmark"></span>
-        </label>
-
-        <!--<button id = "btnCity"  name="cityClicked" value="false" class="button buttonNotClicked" onclick="toggle_button('btnCity')">City</button>
-        <button id = "btnEvent" type="button" name="EventClicked" value="false" class="button buttonNotClicked" onclick="toggle_button('btnEvent')">Event</button>
-        <button id = "btnVenue" type="button" name="venueClicked" value="false" class="button buttonNotClicked" onclick="toggle_button('btnVenue')">Venue</button>
-        <button id = "btnDate" type="button" name="dateClicked" value="false" class="button buttonNotClicked" onclick="toggle_button('btnDate')">Date</button>
-        <button id = "btnCategory" type="button" name="categoryClicked" value="false" class="button buttonNotClicked" onclick="toggle_button('btnCategory')">Category</button>
--->
+    <div class="search">
+        <form name = "searchForm" id = "searchForm" METHOD="post" ACTION="search.html">
+            <input type="text"
+                   placeholder=" Search Events"
+                   name="search">
+        </form>
     </div>
 
+    <form name = "advForm" id = "advForm" METHOD="post" ACTION="search.html">
 
+        <div class="buttons_bar">
+            <button id = "btnToday"
+                    type=Submit
+                    name="todayClicked"
+                    value="false"
+                    class="button buttonNotClicked">Today</button>
+            <button id = "btnWeekend"
+                    type=Submit
+                    name="weekendClicked"
+                    value="false"
+                    class="button buttonNotClicked">This weekend</button>
+            <button id = "btnAll"
+                    type=Submit
+                    name="allCategoryClicked"
+                    value="false"
+                    class="button buttonNotClicked">Search by Date, Location or Category</button>
+        </div>
 
-</form>
+    </form>
 
 <script src="index.js"></script>
 

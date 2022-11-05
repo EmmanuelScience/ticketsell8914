@@ -12,17 +12,20 @@
     <title> Events </title>
 </head>
 <body>
-<% ArrayList<Event> event = (ArrayList<Event>) request.getAttribute("events");
+<% ArrayList<Event> events = (ArrayList<Event>) request.getAttribute("events");
 %>
-<form method="post"  action="doUpdate.html">
-    <% %>
-    Id: <input name="id" value="<%= event.getId()%>">
-    Name: <input name="eventName" value="<%= event.getEventName()%>">
-    City: <input name="city" value="<%= event.getCity()%>">
-    Country: <input name="country" value="<%= event.getCountry()%>">
-    Category: <input name="category" value="<%= event.getCategory()%>">
-    Date: <input name="date" value="<%= event.getDate()%>">
-    <input type="submit" value="Save"/>
+<form method="post"  action="showTickets.html">
+    <% for (Event event : events) { %>
+    <button type="submit"
+        name="eventName"
+        value=<%=event.getId()%>><%=
+        event.getEventName() + " "
+        + event.getCategory() + ""
+        + event.getDate() + " "
+        + event.getVenue() + " "
+        + event.getCity() + " "
+         %><br>
+    <% } %>
 </form>
 </body>
 </html>

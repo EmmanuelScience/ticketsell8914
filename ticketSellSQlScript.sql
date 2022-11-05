@@ -59,9 +59,9 @@ insert into Events(eventName, venue, city, country, date, category)
 insert into Events(eventName, venue, city, country, date, category)
     VALUE ('Arena', 'Venue', 'Madrid', 'Spain', '2022-12-31 23:59:59', 'musical');
 insert into Events(eventName, venue, city, country, date, category)
-    VALUE ('Arena', 'Venue', 'Madrid', 'Spain', '2022-12-31 23:59:59', 'Drugs');
+    VALUE ('Arena', 'Venue', 'Madrid', 'Spain', '2022-12-26 23:59:59', 'Drugs');
 insert into Events(eventName, venue, city, country, date, category)
-    VALUE ('Arena', 'Venue', 'Madrid', 'Spain', '2022-12-31 23:59:59', 'musical');
+    VALUE ('Arena', 'Venue', 'Madrid', 'Spain', '2022-11-05', 'musical');
 
 insert into Tickets(ticketCode, category, price, user, event)
     VALUE ('1234abcd', 'musical', 2.5, 1, 1);
@@ -69,6 +69,7 @@ insert into Tickets(ticketCode, category, price, user, event)
 select * from Users;
 select * from Events;
 select * from Tickets;
+SELECT * FROM Events WHERE DAYOFWEEK(date) > 5;
 
 
 commit;
