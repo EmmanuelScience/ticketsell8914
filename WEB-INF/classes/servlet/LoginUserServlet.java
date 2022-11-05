@@ -102,12 +102,10 @@ public class LoginUserServlet extends HttpServlet {
                 String sEmail    = request.getParameter("email");
                 String sPassw    = request.getParameter("password");
 
-                System.out.println("email: " + sEmail);
-                System.out.println("password: " + sPassw);
 
-                // 4.- Execute the queries
+                // 4 Execute the queries
                 ResultSet rs = st.executeQuery("SELECT * FROM users");
-                // 5.- Iterate through the ResultSet obtained
+                // 5 Iterate through the ResultSet obtained
                 int exists = 0;
                 while (rs.next()) {
                     String inputEmail = rs.getString("email");
