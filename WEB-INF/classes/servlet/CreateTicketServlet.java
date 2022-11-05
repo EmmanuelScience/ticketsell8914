@@ -63,6 +63,7 @@ public class CreateTicketServlet extends HttpServlet {
                 ut.begin();
                 em.persist(tick);
                 ut.commit();
+                out.println("<script>window.location.href='loggedUser.jsp';</script>");
             }
 
         } catch (Exception e) {
@@ -71,22 +72,7 @@ public class CreateTicketServlet extends HttpServlet {
 
 
 
-        /*
-        String id = request.getParameter("id");
-        int idInt = Integer.parseInt(id);
-        //To search A song
-        try {
-            event = em.find(Event.class, idInt );
-            if (event == null) {
-                out.println("Song not found");
-            } else {
-                request.setAttribute("eventBean", event);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ShowEvents.jsp");
-                requestDispatcher.forward(request, response);
-            }
+        out.println("Error");
 
-        } catch (Exception e) {
-            out.println("Error");
-        }*/
     }
 }

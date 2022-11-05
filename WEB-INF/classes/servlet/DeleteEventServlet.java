@@ -53,27 +53,12 @@ public class DeleteEventServlet extends HttpServlet {
                 }
                 em.remove(event);
                 ut.commit();
+                out.println("<script>window.location.href='loggedAdmin.html';</script>");
             }
 
         } catch (Exception e) {
             out.println("Error");
         }
-/*
-        String id = request.getParameter("id");
-        int idInt = Integer.parseInt(id);
-        //To search A song
-        try {
-            event = em.find(Event.class, idInt );
-            if (event == null) {
-                out.println("Song not found");
-            } else {
-                request.setAttribute("eventBean", event);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ShowEvents.jsp");
-                requestDispatcher.forward(request, response);
-            }
 
-        } catch (Exception e) {
-            out.println("Error");
-        }*/
     }
 }

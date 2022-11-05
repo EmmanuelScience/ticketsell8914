@@ -15,6 +15,8 @@ import javax.transaction.UserTransaction;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import static java.lang.System.out;
+
 @WebServlet({ "/createEvent.html" })
 public class CreateEventServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -43,7 +45,6 @@ public class CreateEventServlet extends HttpServlet {
         event.setVenue(request.getParameter("venue"));
         event.setCity(request.getParameter("city"));
         event.setCountry(request.getParameter("country"));
-        //event.setDate(Date.parse(request.getParameter("date")));
         event.setDate(LocalDate.parse(request.getParameter("date")));
         event.setCategory(request.getParameter("category"));
 
@@ -51,26 +52,10 @@ public class CreateEventServlet extends HttpServlet {
             ut.begin();
             em.persist(event);
             ut.commit();
-
+            out.println("<script>window.location.href='loggedAdmin.html';</script>");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-/*
-        String id = request.getParameter("id");
-        int idInt = Integer.parseInt(id);
-        //To search A song
-        try {
-            event = em.find(Event.class, idInt );
-            if (event == null) {
-                out.println("Song not found");
-            } else {
-                request.setAttribute("eventBean", event);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ShowEvents.jsp");
-                requestDispatcher.forward(request, response);
-            }
 
-        } catch (Exception e) {
-            out.println("Error");
-        }*/
     }
 }

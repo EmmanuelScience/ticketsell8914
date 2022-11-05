@@ -85,6 +85,7 @@ public class ModifyEventServlet extends HttpServlet {
                 //removing the old event
                 em.remove(event);
                 ut.commit();
+                out.println("<script>window.location.href='loggedAdmin.html';</script>");
             }
 
         } catch (Exception e) {
