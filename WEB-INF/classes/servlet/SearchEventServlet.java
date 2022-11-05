@@ -65,15 +65,19 @@ public class SearchEventServlet extends HttpServlet {
             boolean weekend = false;
             if (request.getParameter("todayClicked") != null) {
                 request.setAttribute("todayClicked", true);
+                request.setAttribute("weekendClicked", false);
                 today = true;
             }
 
             if (request.getParameter("weekendClicked") != null) {
                 request.setAttribute("weekendClicked", true);
+                request.setAttribute("todayClicked", false);
                 weekend = true;
             }
             if (request.getParameter("allCategoryClicked") != null) {
                 request.setAttribute("allCategoryClicked", true);
+                request.setAttribute("weekendClicked", true);
+                request.setAttribute("todayClicked", true);
             }
             if (today) {
                 String sQuery = "Select e from Event e where e.date = current_date";
@@ -129,11 +133,10 @@ public class SearchEventServlet extends HttpServlet {
         try {
             if (attributes.size() == 0) {
                 request.setAttribute("error", "No Data found");
-            } else {
-                request.setAttribute("events", attributes);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
-                requestDispatcher.forward(request, response);
             }
+            request.setAttribute("events", attributes);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
+            requestDispatcher.forward(request, response);
         } catch (Exception e) {
             out.println("Error");
         }

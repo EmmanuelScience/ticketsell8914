@@ -12,23 +12,29 @@
     <title> Events </title>
 </head>
 <body>
-<% ArrayList<Event> events = (ArrayList<Event>) request.getAttribute("events");
-%>
-<form method="get"  action="event/tickets.html">
-    <% for (Event event : events) { %>
-        <button type="submit"
-            name="eventID"
-            value=<%=event.getId()%>>
-            <%=
-                event.getEventName() + " "
-                + event.getCategory() + ""
-                + event.getDate() + " "
-                + event.getVenue() + " "
-                + event.getCity() + " "
-            %>
-        </button>
-        <br>
+    <%
+        ArrayList<Event> events = (ArrayList<Event>) request.getAttribute("events");
+    %>
+    <h1>Events</h1>
+    <% if (request.getAttribute("error") != null) { %>
+        <h2>There are no available events for this search</h2>
     <% } %>
-</form>
+
+    <form method="get"  action="event/tickets.html">
+        <% for (Event event : events) { %>
+            <button type="submit"
+                name="eventID"
+                value=<%=event.getId()%>>
+                <%=
+                    event.getEventName() + " "
+                    + event.getCategory() + ""
+                    + event.getDate() + " "
+                    + event.getVenue() + " "
+                    + event.getCity() + " "
+                %>
+            </button>
+            <br><br>
+        <% } %>
+    </form>
 </body>
 </html>

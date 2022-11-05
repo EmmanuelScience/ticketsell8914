@@ -23,20 +23,20 @@
     </div>
     <!-- SIGN IN AND LOG IN BUTTONS -->
     <div class="buttons_container">
-        <button class="signup_button"  onclick="window.location.href='registerUSer.html';">Sign up</button>
+        <button class="signup_button"  onclick="window.location.href='registerUser.html';">Sign up</button>
         <button class="login_button" onclick="window.location.href='login.html';">Log in</button>
     </div>
 </header>
 
 <!-- search  -->
 <div class="search">
-    <form name ="searchForm" id ="searchForm" METHOD="post" ACTION="search.html">
+    <form name ="searchForm" id ="searchForm" METHOD="get" ACTION="search.html">
         <input type="text" placeholder=" Search Events" name="search">
         <input id="search_but" type="Submit" value="Search">
     </form>
 </div>
 
-<form name ="advForm" id ="advForm" METHOD="post" ACTION="search.html">
+<form name ="advForm" id ="advForm" METHOD="get" ACTION="search.html">
 
     <div class="buttons_bar">
         <button id = "btnToday"

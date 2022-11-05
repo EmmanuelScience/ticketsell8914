@@ -17,8 +17,14 @@
     Event event = (Event) request.getAttribute("event");
 %>
 <h1>Event: <%=event.getEventName()%></h1>
-<h2>Tickets Available</h2>
-    <form method="get"  action="sellTickets.html">
+<form method="get" action="createTicket.html">
+    <button type="submit" name ="sellBtn" value="sellTicket">Sell Ticket</button>
+</form>
+<h2>Available Tickets</h2>
+    <% if (request.getAttribute("error") != null) { %>
+        <h2>There are no available tickets for this event</h2>
+    <%} %>
+    <form method="get"  action=buyTicket.html">
         <% for (Ticket ticket : tickets) { %>
             <button type="submit"
                     name=<%=ticket.getId()%>
@@ -30,8 +36,10 @@
                         + ticket.getTicketOwnerName()
                     %>
             </button>
-            <br>
+            <br><br>
         <% } %>
     </form>
+
+
 </body>
 </html>
