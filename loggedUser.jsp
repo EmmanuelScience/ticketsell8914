@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Admin view TicketSell</title>
+    <title>Events TicketSell</title>
     <link rel="stylesheet" href="style/register_login.css">
     <link rel="stylesheet" href="style/header_footer.css">
     <link rel="stylesheet" href="style/logged_user.css">

@@ -2,14 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <title>Search Events</title>
 </head>
 <body>
-<form METHOD="post" ACTION="search.html">
+<div class="search">
+    <form name = "searchForm" id = "searchForm" METHOD="post" ACTION="search.html">
+        <input type="text"
+               placeholder=" Search Events"
+               name="search">
+    </form>
+</div>
 
-    Event: <input name="id" value="" />
-    <input type=Submit value="Search Event" />
+<form name = "advForm" id = "advForm" METHOD="post" ACTION="search.html">
+
+    <div class="buttons_bar">
+        <button id = "btnToday"
+                type=Submit
+                name="todayClicked"
+                value="false"
+                class="button buttonNotClicked">Today</button>
+        <button id = "btnWeekend"
+                type=Submit
+                name="weekendClicked"
+                value="false"
+                class="button buttonNotClicked">This weekend</button>
+        <button id = "btnAll"
+                type=Submit
+                name="allCategoryClicked"
+                value="false"
+                class="button buttonNotClicked">Search by Date, Location or Category</button>
+    </div>
 
 </form>
+
+<script src="index.js"></script>
+
 </body>
 </html>
