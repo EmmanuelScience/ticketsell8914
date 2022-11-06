@@ -56,7 +56,7 @@ public class RegisterUserServlet extends HttpServlet {
                 "        <!-- SIGN IN AND LOG IN BUTTONS -->\n" +
                 "        <div class=\"buttons_container\">\n" +
                 "            <button class=\"signup_button\"  onclick=\"window.location.href='registerUser.html';\">Sign up</button>\n" +
-                "            <button class=\"login_button\" onclick=\"window.location.href='login.html';\">Log in</button>\n" +
+                "            <button class=\"login_button\" onclick=\"window.location.href='loginPage.jsp';\">Log in</button>\n" +
                 "        </div></header>" +
                 "<H1 id=\"page_title\">Register TicketSell</H1></BR>");
         out.println("<FORM METHOD=\"POST\" ACTION=\"" + "\">"); // Se llama as� mismo por POST

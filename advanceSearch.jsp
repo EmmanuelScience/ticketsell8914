@@ -54,7 +54,7 @@
         <h2>There are no available events for this search</h2>
     <% } %>
 
-    <form method="get"  action="event/tickets.html">
+    <form method="get"  action="tickets.html">
         <% for (Event event : events) { %>
         <button type="submit"
                 name="eventID"

@@ -28,10 +28,15 @@
         <button class="logout_button" onclick="window.location.href='index.html'">Log out</button>
     </div>
 </header>
+<% if (request.getAttribute("error") != null) {
+    out.println("<h2 style='color:red'>" + request.getAttribute("error") + "</h2>");
+} %>
+
 <div class="create_ticket">
-    <button onclick="window.location.href='registerTicket.html';">Click here to publish a ticket</button>
+    <button onclick="window.location.href='registerTicket.jsp';">Click here to publish a ticket</button>
 </div>
-añadir aqui search y eventos
+
+
 <footer>
     <div class="logo_container">
         <img src="images/logo.png" alt="TicketSell logo">

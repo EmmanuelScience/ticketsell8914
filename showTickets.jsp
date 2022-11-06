@@ -13,8 +13,10 @@
     <title>Title</title>
 </head>
 <body>
-<%  ArrayList<Ticket> tickets = (ArrayList<Ticket>) request.getAttribute("tickets");
+<%  @SuppressWarnings("unchecked")
+    ArrayList<Ticket> tickets = (ArrayList<Ticket>) request.getAttribute("attributes");
     Event event = (Event) request.getAttribute("event");
+
 %>
 <h1>Event: <%=event.getEventName()%></h1>
 
