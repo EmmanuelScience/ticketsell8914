@@ -14,6 +14,10 @@
 <html>
 <head>
     <title>Advance Event Search</title>
+    <link rel="stylesheet" href="style/index_style.css.css">
+    <link rel="stylesheet" href="style/header_footer.css">
+    <link rel="stylesheet" href="style/logged_user.css">
+    <link rel="stylesheet" href="style/adv_search.css">
 </head>
 <body>
 <%
@@ -33,43 +37,45 @@
         e.printStackTrace();
     }
 %>
-    <form method="get"  action="browse.html">
-        <label>
-            <input name="eventVenue" placeholder=" Enter Venue">
-            <input type="date" name="eventDate"  value=<%=date%>>
-            <input name="eventCity" placeholder=" Enter City">
-            <select name="eventCategory" id="cars">
-                <option value="Concert">Concert</option>
-                <option value="Musical">Musical</option>
-                <option value="Park">Park</option>
-                <option value="Festival">Festival</option>
-            </select>
-            <input name="eventName" placeholder=" Enter Event Name">
-        </label>
+<div class="main_title">
+    <h1>Advanced search</h1>
+</div>
+<form method="get" action="browse.html">
+    <label>Event&ensp;<input name="eventName" placeholder=" Enter Event Name"></label>
+    <label>Venue&ensp;<input name="eventVenue" placeholder=" Enter Venue"></label>
+    <label>Date <input type="date" name="eventDate" value="2022-11-06"></label>
+    <label>City&emsp;<input name="eventCity" placeholder=" Enter City"></label>
+    <label>Category<select name="eventCategory" id="cars">
+        <option value="Concert">Concert</option>
+        <option value="Musical">Musical</option>
+        <option value="Park">Park</option>
+        <option value="Festival">Festival</option>
+    </select></label>
+
     <input type="submit" value="Search">
-    </form>
+</form>
 
-    <h1>Events</h1>
-    <% if (request.getAttribute("error") != null) { %>
-        <h2>There are no available events for this search</h2>
+<div class="main_title"><h1>Events</h1></div>
+
+<% if (request.getAttribute("error") != null) { %>
+<h2>There are no available events for this search</h2>
+<% } %>
+
+<<form method="get"  action="event/tickets.html">
+    <% for (Event event : events) { %>
+    <button type="submit"
+            name="eventID"
+            value=<%=event.getId()%>>
+        <%="Event: " +
+            event.getEventName() + "&emsp;Category: "
+                    + event.getCategory() + "&emsp;Date: "
+                    + event.getDate() + "&emsp;Venue: "
+                    + event.getVenue() + "&emsp;City: "
+                    + event.getCity()
+        %>
+    </button>
     <% } %>
-
-    <form method="get"  action="tickets.html">
-        <% for (Event event : events) { %>
-        <button type="submit"
-                name="eventID"
-                value=<%=event.getId()%>>
-            <%=
-            event.getEventName() + " "
-                    + event.getCategory() + ""
-                    + event.getDate() + " "
-                    + event.getVenue() + " "
-                    + event.getCity() + " "
-            %>
-        </button>
-        <br><br>
-        <% } %>
-    </form>
+</form>
 
 </body>
 </html>

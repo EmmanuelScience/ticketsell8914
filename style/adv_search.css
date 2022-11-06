@@ -1,0 +1,78 @@
+.main_title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    margin-top: 3%;
+
+    font-size: 125%;
+}
+
+
+form{
+    width: 100%;
+    margin-left: 3%;
+}
+
+label{
+    display:inline;
+    font-size: 180%;
+    font-weight: bolder;
+}
+
+
+input {
+    margin: 3% 1% 2%;
+    padding: 1%;
+    width: 25%;
+    border: solid 2px #008db1;
+    border-radius: 15px;
+    font-size: 100%;
+
+}
+
+select{
+    margin: 1% auto 1%;
+    padding: 1%;
+    width: 25%;
+    border: solid 2px #008db1;
+    border-radius: 15px;
+    font-size: 100%;
+}
+
+input[type="submit"]{
+    background: #008db1;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 115%;
+    transition-duration: 0.4s;
+    border-radius: 15px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-left: 7%;
+
+
+}
+
+input[type="submit"]:hover {
+    background: #005c74;
+
+
+}
+
+
+button[type="submit"] {
+    margin: 3% 1% 2%;
+    padding: 3%;
+    width: 80%;
+    border-radius: 15px;
+    font-size: 150%;
+    font-weight: bold;
+    margin-left: 10%;
+    background: #77c5d9;
+}
