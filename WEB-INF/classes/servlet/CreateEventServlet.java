@@ -11,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import javax.servlet.annotation.MultipartConfig;
 import javax.transaction.UserTransaction;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -18,6 +20,7 @@ import java.time.LocalDate;
 import static java.lang.System.out;
 
 @WebServlet({ "/createEvent.html" })
+@MultipartConfig
 public class CreateEventServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -51,6 +54,10 @@ public class CreateEventServlet extends HttpServlet {
         event.setDate(LocalDate.parse(request.getParameter("date")));
         event.setCategory(request.getParameter("category"));
 
+        Part filePart = request.getPart("image");
+        byte[] data = new byte[(int) filePart.getSize()];
+        filePart.getInputStream().read(data, 0, data.length);
+        event.setImage(data);
         try {
             ut.begin();
             em.persist(event);

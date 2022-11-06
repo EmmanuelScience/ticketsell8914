@@ -98,7 +98,7 @@ public class RegisterUserServlet extends HttpServlet {
         String servername = "localhost";
         String port = "3306";
         String username  = "root";
-        String password  = "chomsky";
+        String password  = "1234";
 
         PrintWriter out2 = res.getWriter();
 
@@ -129,7 +129,7 @@ public class RegisterUserServlet extends HttpServlet {
 
                 // 4 Execute the queries
                 st.executeUpdate("insert into Users(name , surname, address, alias, phone, email, password) value ('" + sName + "','" + sSurname + "','" + sAddress+ "','" + sAlias+ "','" + sPhone+ "','" + sEmail + "','" + sPassword + "');");
-                ResultSet rs = st.executeQuery("SELECT * FROM users");
+                ResultSet rs = st.executeQuery("SELECT * FROM Users");
 
                 // 6 Close the statement and the connection
                 st.close();

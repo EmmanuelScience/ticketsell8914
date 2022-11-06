@@ -16,7 +16,6 @@ import javax.transaction.UserTransaction;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import static java.lang.System.out;
 
 @WebServlet({ "/SearchEventServlet", "/search.html", "/browse.html" })

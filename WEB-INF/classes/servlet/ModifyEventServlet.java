@@ -56,7 +56,6 @@ public class ModifyEventServlet extends HttpServlet {
                 if (event == null) {
                     out.println("<h2> Event not found.</h2>");
                 } else {
-                    ut.begin();
                     switch (param) {
                         case "eventname":
                             event.setEventName(val);
@@ -77,7 +76,7 @@ public class ModifyEventServlet extends HttpServlet {
                             event.setCategory(val);
                             break;
                     }
-                    Event new_event = new Event();
+                    /*Event new_event = new Event();
 
                     new_event.setEventName(event.getEventName());
                     new_event.setVenue(event.getVenue());
@@ -91,7 +90,9 @@ public class ModifyEventServlet extends HttpServlet {
                         event = em.merge(event);
                     }
                     //removing the old event
-                    em.remove(event);
+                    em.remove(event);*/
+                    ut.begin();
+                    Event newEvent = em.merge(event);
                     ut.commit();
                     out.println("<script>window.location.href='loggedAdmin.html';</script>");
                 }
