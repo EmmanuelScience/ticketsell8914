@@ -29,6 +29,10 @@ public class Event {
     @Column(name = "category", nullable = false, length = 45)
     private String category;
 
+    @Lob
+    @Column(name = "image", nullable = false)
+    private byte[] image;
+
     public Integer getId() {
         return id;
     }
@@ -83,6 +87,14 @@ public class Event {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public byte[] getImage() {
+        return this.image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
 }

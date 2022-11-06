@@ -56,7 +56,7 @@ public class RegisterUserServlet extends HttpServlet {
                 "        <!-- SIGN IN AND LOG IN BUTTONS -->\n" +
                 "        <div class=\"buttons_container\">\n" +
                 "            <button class=\"signup_button\"  onclick=\"window.location.href='registerUser.html';\">Sign up</button>\n" +
-                "            <button class=\"login_button\" onclick=\"window.location.href='login.html';\">Log in</button>\n" +
+                "            <button class=\"login_button\" onclick=\"window.location.href='loginPage.jsp';\">Log in</button>\n" +
                 "        </div></header>" +
                 "<H1 id=\"page_title\">Register TicketSell</H1></BR>");
         out.println("<FORM METHOD=\"POST\" ACTION=\"" + "\">"); // Se llama as� mismo por POST
@@ -129,7 +129,7 @@ public class RegisterUserServlet extends HttpServlet {
 
                 // 4 Execute the queries
                 st.executeUpdate("insert into Users(name , surname, address, alias, phone, email, password) value ('" + sName + "','" + sSurname + "','" + sAddress+ "','" + sAlias+ "','" + sPhone+ "','" + sEmail + "','" + sPassword + "');");
-                ResultSet rs = st.executeQuery("SELECT * FROM users");
+                ResultSet rs = st.executeQuery("SELECT * FROM Users");
 
                 // 6 Close the statement and the connection
                 st.close();
@@ -141,7 +141,7 @@ public class RegisterUserServlet extends HttpServlet {
                 HttpSession ses = req.getSession();
                 ses.setAttribute("user",sName);
                 if (Objects.equals(sName.toLowerCase(),"admin")){
-                    out2.println("<script>window.location.href='loggedAdmin.html';</script>");
+                    out2.println("<script>window.location.href='loggedAdmin.jsp';</script>");
                 }else{
                     out2.println("<script> window.location.href='loggedUser.jsp';</script>");
                 }

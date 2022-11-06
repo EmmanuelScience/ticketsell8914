@@ -1,9 +1,11 @@
 package entities;
 
 import javax.persistence.*;
+import entities.Event;
+import entities.User;
 
 @Entity
-@Table(name = "tickets")
+@Table(name = "Tickets")
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,11 +21,13 @@ public class Ticket {
     @Column(name = "price", nullable = false)
     private Double price;
 
-    @Column(name = "user", nullable = false)
-    private Integer user;
+    @ManyToOne
+    @JoinColumn(name = "user")
+    private User user;
 
-    @Column(name = "event", nullable = false)
-    private Integer event;
+    @ManyToOne
+    @JoinColumn(name = "event")
+    private Event event;
 
     @Column(name = "ticketOwnerName", nullable = false)
     private String ticketOwnerName;
@@ -61,19 +65,17 @@ public class Ticket {
     }
 
     public Integer getUser() {
-        return user;
+        return user.getId();
     }
 
-    public void setUser(Integer user) {
-        this.user = user;
-    }
+    public void setUser(Integer user) { this.user.setId(user); }
 
     public Integer getEvent() {
-        return event;
+        return event.getId();
     }
 
     public void setEvent(Integer event) {
-        this.event = event;
+        this.event.setId(event);
     }
 
     public void setTicketOwnerName(String ticketOwnerName) {

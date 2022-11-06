@@ -7,7 +7,7 @@
         <img src="images/logo.png" alt="TicketSell logo">
     </div>
     <div class="main_title">
-        <a href="loggedAdmin.html">ticketsell</a>
+        <a href="loggedAdmin.jsp">ticketsell</a>
     </div>
     <!-- REGISTERED HEADER  -->
     <div class="registered_container">
@@ -16,12 +16,12 @@
             <img id="user-profile-pic" src="images/avatars/Admin.png" alt="User's profile picture">
             <label id="username-label">Admin</label>
         </div>
-        <button class="logout_button" onclick="window.location.href='loggedAdmin.html'">Log out</button>
+        <button class="logout_button" onclick="window.location.href='loggedAdmin.jsp'">Log out</button>
     </div>
 </header>
 <BODY>
 <h1 id="page_title">Register Event in TicketSell</h1><br>
-<FORM method="POST" action="createEvent.html">
+<FORM method="POST" action="createEvent.html" enctype="multipart/form-data">
     <label for="eventname">Event Name: </label>
     <input type="text" id="eventname" name="eventname" value=""><br><br>
     <label for="category">Category: </label>
@@ -33,8 +33,9 @@
     <label for="country">Country: </label>
     <input type="text" id="country" name="country"><br><br>
     <label for="date">Date: </label>
-
     <input type="date" id="date" name="date" value=""><br><br>
+    <label for="image">Image: </label>
+    <input type="file" id="image" name="image" value=""><br><br>
 
     <input type="Submit" value="Register Event">
     </FORM>

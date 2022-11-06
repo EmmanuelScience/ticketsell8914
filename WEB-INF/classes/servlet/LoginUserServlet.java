@@ -1,5 +1,6 @@
 package servlet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Objects;
+
+import static java.lang.System.out;
+
 @WebServlet({ "/login.html" })
 public class LoginUserServlet extends HttpServlet {
 
@@ -26,57 +30,11 @@ public class LoginUserServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
-
-        // Establece el Content Type
-        res.setContentType("text/html");
-        PrintWriter out = res.getWriter();
-
-        out.println("<HTML>");
-        out.println("<HEAD><TITLE>Login TicketSell</TITLE>" +
-                "<link rel=\"stylesheet\" href=\"style/register_login.css\">\n" +
-                "<link rel=\"stylesheet\" href=\"style/header_footer.css\"></HEAD>");
-        out.println("<header>\n" +
-                "        <div class=\"logo_container\">\n" +
-                "            <img src=\"images/logo.png\" alt=\"TicketSell logo\">\n" +
-                "        </div>\n" +
-                "        <div class=\"main_title\">\n" +
-                "            <a href=\"index.html\">ticketsell</a>\n" +
-                "        </div>\n" +
-                "        <!-- SIGN IN AND LOG IN BUTTONS -->\n" +
-                "        <div class=\"buttons_container\">\n" +
-                "            <button class=\"signup_button\"  onclick=\"window.location.href='registerUser.html';\">Sign up</button>\n" +
-                "            <button class=\"login_button\" onclick=\"window.location.href='login.html';\">Log in</button>\n" +
-                "        </div></header>" +
-                "<H1 id=\"page_title\">Login TicketSell</H1></BR>");
-        out.println("<FORM METHOD=\"POST\" ACTION=\"" + "\">"); // Se llama a si mismo por POST
-        out.println("<label for=\"email\">Email address: </label>" +
-                "<input type=\"text\" id=\"email\" name=\"email\"/><br><br>" +
-                "<label for=\"password\">Password: </label>" +
-                "<input type=\"password\" id=\"password\" name=\"password\"/><br><br>" +
-                "<input type=Submit value=\"Login\" />");
-
-        out.println("</FORM></BODY>" +
-                "<footer>\n" +
-                "    <div class=\"logo_container\">\n" +
-                "        <img src=\"images/logo.png\" alt=\"TicketSell logo\">\n" +
-                "    </div>\n" +
-                "    <div class=\"main_title\">\n" +
-                "        <a>ticketsell</a>\n" +
-                "    </div>\n" +
-                "</footer>" +
-                "</HTML>");
-
-        out.close();
     }
 
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-
-        PrintWriter out2 = response.getWriter();
-        out2.println("<HTML>");
-        out2.println("<HEAD><TITLE>Login TicketSell</TITLE></HEAD>");
-
         String database = "ticketselldb";
         String servername = "localhost";
         String port = "3306";
@@ -90,21 +48,21 @@ public class LoginUserServlet extends HttpServlet {
             // 2- Obtain a Connection object --> con
             String url = "";
             Connection con = null;
-            con = DriverManager.getConnection("jdbc:mysql://"+servername+":"+port+"/"+database+"?useSSL=false& serverTimezone=UTC&allowPublicKeyRetrieval=true", username, password);
+            con = DriverManager.getConnection("jdbc:mysql://" + servername + ":" + port + "/" + database + "?useSSL=false& serverTimezone=UTC&allowPublicKeyRetrieval=true", username, password);
 
-            if (con==null){
+            if (con == null) {
                 System.out.println("--->UNABLE TO CONNECT TO SERVER:" + servername);
             } else {
 
                 // 3- Obtain an Statement object -> st
                 Statement st = con.createStatement();
 
-                String sEmail    = request.getParameter("email");
-                String sPassw    = request.getParameter("password");
+                String sEmail = request.getParameter("email");
+                String sPassw = request.getParameter("password");
 
 
                 // 4 Execute the queries
-                ResultSet rs = st.executeQuery("SELECT * FROM users");
+                ResultSet rs = st.executeQuery("SELECT * FROM Users");
                 // 5 Iterate through the ResultSet obtained
                 int exists = 0;
                 while (rs.next()) {
@@ -114,35 +72,42 @@ public class LoginUserServlet extends HttpServlet {
                         if (Objects.equals(sPassw, rs.getString("password"))) {
                             String sName = rs.getString("name");
                             String user_id = rs.getString("userID");
-                            out2.println("<script> alert(\"Welcome again, "+sName+"!</script>\");");
+                            //out2.println("<script> alert(\"Welcome again, "+sName+"!</script>\");");
                             HttpSession session = request.getSession();
-                            session.setAttribute("user",sName);
-                            session.setAttribute("userid",user_id);
-                            if (Objects.equals(sName.toLowerCase(),"admin")){
-                                out2.println("<script>window.location.href='loggedAdmin.html';</script>");
-
-                            }else{
-                                out2.println("<script>window.location.href='loggedUser.jsp';</script>");
+                            session.setAttribute("user", sName);
+                            session.setAttribute("userid", user_id);
+                            if (Objects.equals(sName.toLowerCase(), "admin")) {
+                                sendDataToDisplay(request, response,  "/loggedAdmin.jsp", null);
+                            } else {
+                                sendDataToDisplay(request, response, "/loggedUser.jsp", null);
                             }
                             break;
                         } else {
-                            out2.println("<h2> Incorrect password. Please, try again.</h2>");
+                            sendDataToDisplay(request, response,  "/loginPage.jsp", "Incorrect password. Please, try again.");
                             break;
                         }
                     }
                 }
-                if (exists == 0){
-                    out2.println("<h2>This email is not registered. Please, register.</h2>");
+                if (exists == 0) {
+                    sendDataToDisplay(request, response,  "/loginPage.jsp", "Incorrect password. Please, try again.");
                 }
-                // 6.- Close the statement and the connection
                 st.close();
                 con.close();
-
             }
         } catch (Exception e) {
-                out2.println("<FONT color=\"#ff0000\">" + e.getMessage() + "</FONT><BR>");
-            }
-        out2.println("</BODY></HTML>");
-
+            sendDataToDisplay(request, response,  "/loginPage.jsp", e.getMessage());
         }
     }
+
+    private void sendDataToDisplay(HttpServletRequest request, HttpServletResponse response, String url, String error) {
+        try {
+            if (error != null) {
+                request.setAttribute("error", error);
+            }
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
+            requestDispatcher.forward(request, response);
+        } catch (Exception e) {
+            out.println("Error");
+        }
+    }
+}

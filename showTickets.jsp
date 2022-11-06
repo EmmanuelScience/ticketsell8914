@@ -18,9 +18,10 @@
     <link rel="stylesheet" href="style/adv_search.css">
 </head>
 <body>
-
-<%  ArrayList<Ticket> tickets = (ArrayList<Ticket>) request.getAttribute("tickets");
+<%  @SuppressWarnings("unchecked")
+    ArrayList<Ticket> tickets = (ArrayList<Ticket>) request.getAttribute("attributes");
     Event event = (Event) request.getAttribute("event");
+
 %>
 <div class="main_title">
 <h1>Event: <%=event.getEventName()%></h1>

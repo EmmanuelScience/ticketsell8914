@@ -5,6 +5,7 @@ import entities.Event;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,13 +40,10 @@ public class ModifyEventServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<HTML>");
 
         String id = request.getParameter("id_mod");
         if (Objects.equals(id, "")) {
-            out.println("<h2>Please, enter an event id.</h2>");
+            request.setAttribute("error", "Please, enter an event id");
         }else {
             int idInt = Integer.parseInt(id);
             String param = request.getParameter("modifying");
@@ -54,9 +52,8 @@ public class ModifyEventServlet extends HttpServlet {
             try {
                 Event event = em.find(Event.class, idInt);
                 if (event == null) {
-                    out.println("<h2> Event not found.</h2>");
+                    request.setAttribute("error", "No events found");
                 } else {
-                    ut.begin();
                     switch (param) {
                         case "eventname":
                             event.setEventName(val);
@@ -77,7 +74,7 @@ public class ModifyEventServlet extends HttpServlet {
                             event.setCategory(val);
                             break;
                     }
-                    Event new_event = new Event();
+                    /*Event new_event = new Event();
 
                     new_event.setEventName(event.getEventName());
                     new_event.setVenue(event.getVenue());
@@ -91,9 +88,10 @@ public class ModifyEventServlet extends HttpServlet {
                         event = em.merge(event);
                     }
                     //removing the old event
-                    em.remove(event);
+                    em.remove(event);*/
+                    ut.begin();
+                    Event newEvent = em.merge(event);
                     ut.commit();
-                    out.println("<script>window.location.href='loggedAdmin.html';</script>");
                 }
 
             } catch (Exception e) {
@@ -101,7 +99,8 @@ public class ModifyEventServlet extends HttpServlet {
                     out.println(e.getMessage());
             }
         }
-        out.println("</HTML>");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/loggedAdmin.jsp");
+        requestDispatcher.forward(request, response);
 
         out.close();
     }
