@@ -19,7 +19,7 @@ import java.util.List;
 
 import static java.lang.System.out;
 
-@WebServlet({ "/SearchEventServlet", "/search.html", "/browse.html", "/event/tickets.html" })
+@WebServlet({ "/SearchEventServlet", "/search.html", "/browse.html", "/tickets.html" })
 public class SearchEventServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,7 @@ public class SearchEventServlet extends HttpServlet {
             doSearchEvents(request, response);
         } else if (uri.endsWith("/browse.html")) {
             doSearchEventsAdvance(request, response);
-        } else if (uri.endsWith("/event/tickets.html")) {
+        } else if (uri.endsWith("/tickets.html")) {
             doShowTickets(request, response);
         }
     }

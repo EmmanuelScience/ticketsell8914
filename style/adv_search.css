@@ -56,13 +56,10 @@ input[type="submit"]{
     padding-bottom: 2%;
     margin-left: 7%;
 
-
 }
 
 input[type="submit"]:hover {
     background: #005c74;
-
-
 }
 
 
@@ -75,4 +72,20 @@ button[type="submit"] {
     font-weight: bold;
     margin-left: 10%;
     background: #77c5d9;
+}
+
+.sell_ticket button {
+
+    background-color: #008db1;
+    color: rgb(255, 255, 255);
+    border: none;
+    width: 50%;
+    border-radius: 50px;
+    padding: 2%;
+
+
+}
+
+.sell_ticket button:hover {
+    background-color: #005c74;
 }

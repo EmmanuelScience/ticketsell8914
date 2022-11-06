@@ -21,7 +21,7 @@ import java.time.LocalDate;
 
 import static java.lang.System.out;
 
-@WebServlet({ "/CreateTicketServlet", "/event/createTicket.html" })
+@WebServlet({ "/CreateTicketServlet", "/createTicket.html" })
 public class CreateTicketServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -78,6 +78,7 @@ public class CreateTicketServlet extends HttpServlet {
                     tick.setPrice(Double.valueOf(request.getParameter("price")));
                     tick.setUser(user);
                     tick.setEvent(idEv);
+                    tick.setTicketOwnerName("owner");
                     ut.begin();
                     em.persist(tick);
                     ut.commit();
