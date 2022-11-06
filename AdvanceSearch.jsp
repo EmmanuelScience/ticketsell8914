@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="style/index_style.css.css">
     <link rel="stylesheet" href="style/header_footer.css">
     <link rel="stylesheet" href="style/logged_user.css">
+    <link rel="stylesheet" href="style/adv_search.css">
 </head>
 <body>
 <%
@@ -60,20 +61,19 @@
 <h2>There are no available events for this search</h2>
 <% } %>
 
-<form method="get"  action="event/tickets.html">
+<<form method="get"  action="event/tickets.html">
     <% for (Event event : events) { %>
     <button type="submit"
             name="eventID"
             value=<%=event.getId()%>>
-        <%=
-        event.getEventName() + " "
-                + event.getCategory() + ""
-                + event.getDate() + " "
-                + event.getVenue() + " "
-                + event.getCity() + " "
+        <%="Event: " +
+            event.getEventName() + "&emsp;Category: "
+                    + event.getCategory() + "&emsp;Date: "
+                    + event.getDate() + "&emsp;Venue: "
+                    + event.getVenue() + "&emsp;City: "
+                    + event.getCity()
         %>
     </button>
-    <br><br>
     <% } %>
 </form>
 

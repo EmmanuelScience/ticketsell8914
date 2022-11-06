@@ -68,10 +68,11 @@ input[type="submit"]:hover {
 
 button[type="submit"] {
     margin: 3% 1% 2%;
-    padding: 1%;
-    width: 25%;
-    border: solid 2px #008db1;
+    padding: 3%;
+    width: 80%;
     border-radius: 15px;
-    font-size: 100%;
-
+    font-size: 150%;
+    font-weight: bold;
+    margin-left: 10%;
+    background: #77c5d9;
 }
