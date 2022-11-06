@@ -17,6 +17,14 @@
     <link rel="stylesheet" href="style/adv_search.css">
 </head>
 <body>
+
+<header>
+    <div class="logo_container">
+        <img src="images/logo.png" alt="TicketSell logo">
+    </div>
+    <div class="main_title">
+        <a href="index.html">ticketsell</a>
+    </div></header>
     <%
         ArrayList<Event> events = (ArrayList<Event>) request.getAttribute("events");
     %>
@@ -48,4 +56,12 @@
         <% } %>
     </form>
 </body>
+<footer>
+    <div class="logo_container">
+        <img src="images/logo.png" alt="TicketSell logo">
+    </div>
+    <div class="main_title">
+        <a>ticketsell</a>
+    </div>
+</footer>
 </html>

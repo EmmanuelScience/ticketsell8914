@@ -1,0 +1,100 @@
+Index: WEB-INF/web.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/WEB-INF/web.xml b/WEB-INF/web.xml
+--- a/WEB-INF/web.xml	
++++ b/WEB-INF/web.xml	
+@@ -1,21 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+-    <display-name>Ticket Swap</display-name>
+-    <welcome-file-list>
+-        <welcome-file>registerEvent.html</welcome-file>
+-    </welcome-file-list>
+-</web-app>
+-        <!--<?xml version="1.0" encoding="UTF-8"?>
+-        <web-app id="WebApp_ID" version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+-        <display-name>JDBExampleSol</display-name>
+-        <servlet>
+-          <description></description>
+-          <display-name>LoginServlet</display-name>
+-          <servlet-name>LoginServlet</servlet-name>
+-          <servlet-class>servlet.LoginServlet</servlet-class>
+-        </servlet>
+-        <servlet-mapping>
+-          <servlet-name>LoginServlet</servlet-name>
+-          <url-pattern>*.html</url-pattern>
+-        </servlet-mapping>
+-          </web-app>-->
+\ No newline at end of file
++  <display-name>Ticket Swap</display-name>
++  <welcome-file-list>
++    <welcome-file>registerEvent.html</welcome-file>
++  </welcome-file-list>
++</web-app>
+\ No newline at end of file
+Index: .idea/jpa-buddy.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jpa-buddy.xml b/.idea/jpa-buddy.xml
+--- a/.idea/jpa-buddy.xml	
++++ b/.idea/jpa-buddy.xml	
+@@ -1,9 +1,9 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="JpaBuddyIdeaProjectConfig" reUseTableSchema="true">
++  <component name="JpaBuddyIdeaProjectConfig">
+     <option name="defaultUnitInitialized" value="true" />
+     <option name="renamerInitialized" value="true" />
+-    <option name="reverseEngineeringLastDbConnectionId" value="f99cf57c-776e-4dd6-a09d-07d57522a0ec" />
++    <option name="reverseEngineeringLastDbConnectionId" value="5ac62758-1853-4102-96c2-daf90b334d95" />
+     <option name="reLastEntityCreationPackage" value="WEB-INF/classes/entities" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/dataSources.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.xml b/.idea/dataSources.xml
+--- a/.idea/dataSources.xml	
++++ b/.idea/dataSources.xml	
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+-    <data-source source="LOCAL" name="ticketselldb@localhost" uuid="f99cf57c-776e-4dd6-a09d-07d57522a0ec">
++    <data-source source="LOCAL" name="ticketselldb@localhost" uuid="5ac62758-1853-4102-96c2-daf90b334d95">
+       <driver-ref>mysql.8</driver-ref>
+       <synchronize>true</synchronize>
+       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+Index: ticketsell8914.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ticketsell8914.iml b/ticketsell8914.iml
+--- a/ticketsell8914.iml	
++++ b/ticketsell8914.iml	
+@@ -18,7 +18,7 @@
+         <datasource-mapping>
+           <factory-entry name="laboratoriosPU" />
+           <factory-entry name="songs" value="4596b2c1-6ed6-4744-a76b-3216d3e6aa13" />
+-          <factory-entry name="ticketSell" value="f99cf57c-776e-4dd6-a09d-07d57522a0ec" />
++          <factory-entry name="ticketSell" value="5ac62758-1853-4102-96c2-daf90b334d95" />
+           <factory-entry name="ticketsell8914" />
+         </datasource-mapping>
+         <naming-strategy-map />
+@@ -35,6 +35,5 @@
+     <orderEntry type="sourceFolder" forTests="false" />
+     <orderEntry type="library" name="JPA 2.1-JPA 2.1" level="project" />
+     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+-    <orderEntry type="library" name="jquery" level="application" />
+   </component>
+ </module>
+\ No newline at end of file

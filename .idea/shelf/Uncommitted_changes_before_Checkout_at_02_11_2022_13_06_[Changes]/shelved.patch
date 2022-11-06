@@ -1,0 +1,78 @@
+Index: WEB-INF/web.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<web-app xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://xmlns.jcp.org/xml/ns/javaee\" xsi:schemaLocation=\"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd\" id=\"WebApp_ID\" version=\"3.1\">\r\n  <display-name>Ticket Swap</display-name>\r\n  <welcome-file-list>\r\n    <welcome-file>SearchEvent.html</welcome-file>\r\n  </welcome-file-list>\r\n</web-app>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/WEB-INF/web.xml b/WEB-INF/web.xml
+--- a/WEB-INF/web.xml	(revision b311144eec1a36725ec02bc677e60e8870a0a757)
++++ b/WEB-INF/web.xml	(date 1667389188750)
+@@ -2,6 +2,6 @@
+ <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+   <display-name>Ticket Swap</display-name>
+   <welcome-file-list>
+-    <welcome-file>SearchEvent.html</welcome-file>
++    <welcome-file>registerEvent.html</welcome-file>
+   </welcome-file-list>
+ </web-app>
+\ No newline at end of file
+Index: .idea/jpa-buddy.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"JpaBuddyIdeaProjectConfig\">\r\n    <option name=\"defaultUnitInitialized\" value=\"true\" />\r\n    <option name=\"renamerInitialized\" value=\"true\" />\r\n    <option name=\"reverseEngineeringLastDbConnectionId\" value=\"a22347b3-39a0-4365-9c6a-dae5d32cedfd\" />\r\n    <option name=\"reLastEntityCreationPackage\" value=\"WEB-INF/classes/entities\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jpa-buddy.xml b/.idea/jpa-buddy.xml
+--- a/.idea/jpa-buddy.xml	(revision b311144eec1a36725ec02bc677e60e8870a0a757)
++++ b/.idea/jpa-buddy.xml	(date 1667319435861)
+@@ -3,7 +3,7 @@
+   <component name="JpaBuddyIdeaProjectConfig">
+     <option name="defaultUnitInitialized" value="true" />
+     <option name="renamerInitialized" value="true" />
+-    <option name="reverseEngineeringLastDbConnectionId" value="a22347b3-39a0-4365-9c6a-dae5d32cedfd" />
++    <option name="reverseEngineeringLastDbConnectionId" value="5ac62758-1853-4102-96c2-daf90b334d95" />
+     <option name="reLastEntityCreationPackage" value="WEB-INF/classes/entities" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/dataSources.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DataSourceManagerImpl\" format=\"xml\" multifile-model=\"true\">\r\n    <data-source source=\"LOCAL\" name=\"ticketselldb@localhost\" uuid=\"a22347b3-39a0-4365-9c6a-dae5d32cedfd\">\r\n      <driver-ref>mysql.8</driver-ref>\r\n      <synchronize>true</synchronize>\r\n      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>\r\n      <jdbc-url>jdbc:mysql://localhost:3306/ticketselldb</jdbc-url>\r\n      <working-dir>$ProjectFileDir$</working-dir>\r\n    </data-source>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.xml b/.idea/dataSources.xml
+--- a/.idea/dataSources.xml	(revision b311144eec1a36725ec02bc677e60e8870a0a757)
++++ b/.idea/dataSources.xml	(date 1667319435848)
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+-    <data-source source="LOCAL" name="ticketselldb@localhost" uuid="a22347b3-39a0-4365-9c6a-dae5d32cedfd">
++    <data-source source="LOCAL" name="ticketselldb@localhost" uuid="5ac62758-1853-4102-96c2-daf90b334d95">
+       <driver-ref>mysql.8</driver-ref>
+       <synchronize>true</synchronize>
+       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+Index: ticketsell8914.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"FacetManager\">\r\n    <facet type=\"web\" name=\"Web\">\r\n      <configuration>\r\n        <descriptors>\r\n          <deploymentDescriptor name=\"web.xml\" url=\"file://$MODULE_DIR$/WEB-INF/web.xml\" />\r\n        </descriptors>\r\n        <webroots>\r\n          <root url=\"file://$MODULE_DIR$\" relative=\"/\" />\r\n        </webroots>\r\n      </configuration>\r\n    </facet>\r\n    <facet type=\"jpa\" name=\"JPA\">\r\n      <configuration>\r\n        <setting name=\"validation-enabled\" value=\"true\" />\r\n        <setting name=\"provider-name\" value=\"EclipseLink\" />\r\n        <datasource-mapping>\r\n          <factory-entry name=\"laboratoriosPU\" />\r\n          <factory-entry name=\"songs\" value=\"4596b2c1-6ed6-4744-a76b-3216d3e6aa13\" />\r\n          <factory-entry name=\"ticketSell\" value=\"a22347b3-39a0-4365-9c6a-dae5d32cedfd\" />\r\n        </datasource-mapping>\r\n        <naming-strategy-map />\r\n        <deploymentDescriptor name=\"persistence.xml\" url=\"file://$MODULE_DIR$/WEB-INF/classes/META-INF/persistence.xml\" />\r\n      </configuration>\r\n    </facet>\r\n  </component>\r\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\r\n    <exclude-output />\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <sourceFolder url=\"file://$MODULE_DIR$/WEB-INF/classes\" isTestSource=\"false\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n    <orderEntry type=\"library\" name=\"JPA 2.1-JPA 2.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"Java EE 6-Java EE 6\" level=\"project\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ticketsell8914.iml b/ticketsell8914.iml
+--- a/ticketsell8914.iml	(revision b311144eec1a36725ec02bc677e60e8870a0a757)
++++ b/ticketsell8914.iml	(date 1667319435813)
+@@ -18,7 +18,8 @@
+         <datasource-mapping>
+           <factory-entry name="laboratoriosPU" />
+           <factory-entry name="songs" value="4596b2c1-6ed6-4744-a76b-3216d3e6aa13" />
+-          <factory-entry name="ticketSell" value="a22347b3-39a0-4365-9c6a-dae5d32cedfd" />
++          <factory-entry name="ticketSell" value="5ac62758-1853-4102-96c2-daf90b334d95" />
++          <factory-entry name="ticketsell8914" />
+         </datasource-mapping>
+         <naming-strategy-map />
+         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/WEB-INF/classes/META-INF/persistence.xml" />

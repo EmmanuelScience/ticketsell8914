@@ -20,7 +20,7 @@ header {
     max-height: 90px;
 }
 
-.main_title a{
+.ticketsell_title a{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 250%;
     color:#008db1;
@@ -28,7 +28,7 @@ header {
     text-decoration: none;
 }
 
-.main_title{
+.ticketsell_title{
     padding-top: 1%;
 }
 

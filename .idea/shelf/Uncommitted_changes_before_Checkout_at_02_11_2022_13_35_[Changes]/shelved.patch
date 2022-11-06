@@ -1,0 +1,112 @@
+Index: loggedAdmin.html
+===================================================================
+diff --git a/loggedAdmin.html b/loggedAdmin.html
+--- a/loggedAdmin.html	
++++ b/loggedAdmin.html	
+@@ -1,1 +1,37 @@
+-<html><button class="create_event"  onclick="window.location.href='registerEvent.html';">Create an event</button></html>
+\ No newline at end of file
++<html>
++<head>
++    <title>Admin TicketSell</title>
++    <link rel="stylesheet" href="style/register_login.css">
++    <link rel="stylesheet" href="style/header_footer.css">
++    <link rel="stylesheet" href="style/logged_admin.css">
++</head>
++
++<body>
++<header>
++    <div class="logo_container">
++        <img src="images/logo.png" alt="TicketSell logo">
++    </div>
++    <div class="main_title">
++        <a href="loggedAdmin.html">ticketsell</a>
++    </div>
++    <!-- REGISTERED HEADER  -->
++    <div class="registered_container">
++        <img id="messages" src="images/icons/dm.png" alt="send a message">
++        <div id="profile_info_div">
++            <img id="user-profile-pic" src="images/avatars/Admin.png" alt="User's profile picture">
++            <label id="username-label">Admin</label>
++        </div>
++        <button class="logout_button" onclick="window.location.href='loggedAdmin.html'">Log out</button>
++    </div>
++</header>
++<h1 id="page_title">Administer events in TicketSell</h1><br>
++<div class="create_event">
++    <button onclick="window.location.href='registerEvent.html';">Create an event</button>
++</div>
++
++<div id="no_exp">
++    <p>There are no events to show. Please, create one.</p>
++</div>
++
++<ul id="ul2">
++</ul>
+\ No newline at end of file
+Index: WEB-INF/classes/servlet/AdminServlet.java
+===================================================================
+diff --git a/WEB-INF/classes/servlet/AdminServlet.java b/WEB-INF/classes/servlet/AdminServlet.java
+--- a/WEB-INF/classes/servlet/AdminServlet.java	
++++ b/WEB-INF/classes/servlet/AdminServlet.java	
+@@ -31,30 +31,44 @@
+         res.setContentType("text/html");
+         PrintWriter out = res.getWriter();
+ 
+-        out.println("<HTML>");
+-        out.println("<HEAD><TITLE>Admin TicketSell</TITLE>" +
+-                "<link rel=\"stylesheet\" href=\"style/register_login.css\">\n" +
+-                "<link rel=\"stylesheet\" href=\"style/header_footer.css\"></HEAD>");
+-        out.println("<header>\n" +
++        out.println("<html>\n" +
++                "    <head>\n" +
++                "    <title>Admin TicketSell</title>\n" +
++                "    <link rel=\"stylesheet\" href=\"style/register_login.css\">\n" +
++                "    <link rel=\"stylesheet\" href=\"style/header_footer.css\">\n" +
++                "    <link rel=\"stylesheet\" href=\"style/logged_admin.css\">\n" +
++                "</head>\n" +
++                "\n" +
++                "    <body>\n" +
++                "        <header>\n" +
+                 "        <div class=\"logo_container\">\n" +
+-                "            <img src=\"images/logo.png\" alt=\"TicketSell logo\">\n" +
++                "        <img src=\"images/logo.png\" alt=\"TicketSell logo\">\n" +
+                 "        </div>\n" +
+                 "        <div class=\"main_title\">\n" +
+-                "            <a href=\"loggedAdmin.html\">ticketsell</a>\n" +
+-                "        </div>\n"+
+-                "        <!-- REGISTERED HEADER CHANGES -->\n" +
++                "        <a href=\"loggedAdmin.html\">ticketsell</a>\n" +
++                "        </div>\n" +
++                "        <!-- REGISTERED HEADER  -->\n" +
+                 "        <div class=\"registered_container\">\n" +
+-                "            <img id=\"messages\" src=\"images/icons/dm.png\" alt=\"send a message\" />\n" +
++                "            <img id=\"messages\" src=\"images/icons/dm.png\" alt=\"send a message\">\n" +
+                 "            <div id=\"profile_info_div\">\n" +
+-                "                <img id=\"user-profile-pic\" src=\"images/avatars/Admin.png\" alt=\"Admin's profile picture\" />\n" +
+-                "                <label id=\"username-label\"></label>\n" +
++                "                <img id=\"user-profile-pic\" src=\"images/avatars/Admin.png\" alt=\"User's profile picture\">\n" +
++                "                <label id=\"username-label\">Admin</label>\n" +
+                 "            </div>\n" +
+-                "            <button class=\"logout_button\">Log out</button>\n" +
++                "            <button class=\"logout_button\" onclick=\"window.location.href='loggedAdmin.html'\">Log out</button>\n" +
+                 "        </div>\n" +
+-                "    </header>" +
+-                "<H1 id=\"page_title\">Admin changes in TicketSell TicketSell</H1></BR>");
++                "        </header>\n" +
++                "    <h1 id=\"page_title\">Administer events in TicketSell</h1><br>\n" +
++                "    <div class=\"create_event\">\n" +
++                "    <button onclick=\"window.location.href='registerEvent.html';\">Create an event</button>\n" +
++                "    </div>\n" +
++                "\n" +
++                "    <div id=\"no_exp\">\n" +
++                "        <p>There are no events to show. Please, create one.</p>\n" +
++                "    </div>\n" +
++                "\n" +
++                "    <ul id=\"ul2\">\n" +
++                "    </ul>");
+ 
+-        // EVENTS VIEW
+ 
+         String database = "ticketselldb";
+         String servername = "localhost";

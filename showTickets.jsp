@@ -18,8 +18,19 @@
     <link rel="stylesheet" href="style/adv_search.css">
 </head>
 <body>
+<<<<<<< Updated upstream:showTickets.jsp
 <%  @SuppressWarnings("unchecked")
     ArrayList<Ticket> tickets = (ArrayList<Ticket>) request.getAttribute("attributes");
+=======
+<header>
+    <div class="logo_container">
+        <img src="images/logo.png" alt="TicketSell logo">
+    </div>
+    <div class="main_title">
+        <a href="index.html">ticketsell</a>
+    </div></header>
+<%  ArrayList<Ticket> tickets = (ArrayList<Ticket>) request.getAttribute("tickets");
+>>>>>>> Stashed changes:ShowTickets.jsp
     Event event = (Event) request.getAttribute("event");
 
 %>
@@ -30,8 +41,8 @@
 <form class="sell_ticket" method="get" action="createTicket.html">
     <button type="submit" name ="sellTicket" value=<%=event.getId()%>>Sell ticket for this event</button>
 </form>
-
-<h2>Available Tickets</h2>
+<div class="main_title">
+    <h1>Available Tickets</h1></div>
     <% if (request.getAttribute("error") != null) { %>
         <h2>There are no available tickets for this event</h2>
     <%} %>
@@ -54,4 +65,12 @@
 
 
 </body>
+<footer>
+    <div class="logo_container">
+        <img src="images/logo.png" alt="TicketSell logo">
+    </div>
+    <div class="main_title">
+        <a>ticketsell</a>
+    </div>
+</footer>
 </html>

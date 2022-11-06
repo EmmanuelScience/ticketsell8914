@@ -20,6 +20,14 @@
     <link rel="stylesheet" href="style/adv_search.css">
 </head>
 <body>
+
+<header>
+    <div class="logo_container">
+        <img src="images/logo.png" alt="TicketSell logo">
+    </div>
+    <div class="ticketsell_title">
+        <a href="index.html">ticketsell</a>
+    </div></header>
 <%
     ArrayList<Event> events = (ArrayList<Event>) request.getAttribute("events");
 
@@ -58,7 +66,7 @@
 <div class="main_title"><h1>Events</h1></div>
 
 <% if (request.getAttribute("error") != null) { %>
-<h2>There are no available events for this search</h2>
+<h1>There are no available events for this search</h1>
 <% } %>
 
 <<form method="get"  action="tickets.html">
@@ -78,4 +86,12 @@
 </form>
 
 </body>
+<footer>
+    <div class="logo_container">
+        <img src="images/logo.png" alt="TicketSell logo">
+    </div>
+    <div class="main_title">
+        <a>ticketsell</a>
+    </div>
+</footer>
 </html>

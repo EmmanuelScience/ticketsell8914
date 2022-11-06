@@ -1,0 +1,44 @@
+Index: WEB-INF/classes/servlet/CreateTicketServlet.java
+===================================================================
+diff --git a/WEB-INF/classes/servlet/CreateTicketServlet.java b/WEB-INF/classes/servlet/CreateTicketServlet.java
+--- a/WEB-INF/classes/servlet/CreateTicketServlet.java	
++++ b/WEB-INF/classes/servlet/CreateTicketServlet.java	
+@@ -2,6 +2,7 @@
+ 
+ import entities.Event;
+ import entities.Ticket;
++import entities.User;
+ 
+ import javax.annotation.Resource;
+ import javax.persistence.EntityManager;
+@@ -44,7 +45,10 @@
+         //finding event
+         int idEv = Integer.valueOf(request.getParameter("event"));
+ 
+-        //To search A song
++        //finding user
++        HttpSession session = request.getSession();
++        int user = (int) session.getAttribute("userid");
++        //creating the event
+         try {
+             Event event = em.find(Event.class, idEv );
+             if (event == null) {
+@@ -54,7 +58,7 @@
+                 tick.setTicketCode(request.getParameter("ticketcode"));
+                 tick.setCategory(request.getParameter("category"));
+                 tick.setPrice(Double.valueOf(request.getParameter("price")));
+-                //tick.setUser();
++                tick.setUser(user);
+                 tick.setEvent(idEv);
+                 ut.begin();
+                 em.persist(event);
+@@ -65,8 +69,7 @@
+             throw new RuntimeException(e);
+         }
+ 
+-        HttpSession session = request.getSession();
+-        User user =session.getAttribute("user");
++
+ 
+         /*
+         String id = request.getParameter("id");
