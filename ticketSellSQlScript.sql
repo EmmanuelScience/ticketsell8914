@@ -45,9 +45,14 @@ insert into Tickets (ticketCode, category, price, user, event, ticketOwnerName) 
 DELETE FROM events WHERE eventID = 1;
 insert into Users(name, surname, address, alias, phone, email, password)
     value ('John', 'Doe', 'Su Casa', 'johnny', '+341234567', 'john@email.com', '1234');
-
 insert into Events(eventName, venue, city, country, date, category)
-    VALUE ('Arena', 'Fabrik', 'Madrid', 'Spain', '2022-12-31 23:59:59', 'musical');
+    VALUE ('Arena', 'Fabrik', 'Madrid', 'Spain', '2022-11-06 23:59:59', 'musical');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'O2', 'Paris', 'France', '2022-11-06 23:59:59', 'theater');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'Venue Cologne', 'Cologne', 'Germany', '2022-11-06 23:59:59', 'Concert');
+insert into Events(eventName, venue, city, country, date, category)
+    VALUE ('Arena', 'Fabrik', 'Madrid', 'Spain', '2022-11-06 23:59:59', 'musical');
 insert into Events(eventName, venue, city, country, date, category)
     VALUE ('Arena', 'O2', 'Paris', 'France', '2022-12-31 23:59:59', 'theater');
 insert into Events(eventName, venue, city, country, date, category)

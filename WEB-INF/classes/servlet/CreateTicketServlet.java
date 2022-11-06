@@ -46,7 +46,7 @@ public class CreateTicketServlet extends HttpServlet {
         String uri = request.getRequestURI();
 
         if (request.getParameter("sellTicket") != null) {
-            if (session.getAttribute("userid") == null) {
+            if (session.getAttribute("userid") != null) {
                 //int user = Integer.parseInt((String) session.getAttribute("userid"));
                 int eventID = Integer.parseInt((String) request.getParameter("sellTicket"));
                 try {

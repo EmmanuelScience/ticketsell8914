@@ -81,7 +81,7 @@ public class LoginUserServlet extends HttpServlet {
         String servername = "localhost";
         String port = "3306";
         String username  = "root";
-        String password  = "1234";
+        String password  = "chomsky";
 
         try {
 

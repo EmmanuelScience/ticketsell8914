@@ -40,6 +40,9 @@ public class CreateEventServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
+        if (request.getParameter("eventname") != null) {
+
+        }
         Event event = new Event();
         event.setEventName(request.getParameter("eventname"));
         event.setVenue(request.getParameter("venue"));

@@ -1,6 +1,9 @@
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.temporal.TemporalAdjusters" %>
-<%@ page import="java.time.DayOfWeek" %><%--
+<%@ page import="java.time.DayOfWeek" %>
+<%@ page import="java.lang.reflect.Array" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="entities.Event" %><%--
   Created by IntelliJ IDEA.
   User: emmao
   Date: 05/11/2022
@@ -14,6 +17,8 @@
 </head>
 <body>
 <%
+    ArrayList<Event> events = (ArrayList<Event>) request.getAttribute("events");
+
     String date = "";
     try {
         boolean today = (boolean) (request.getAttribute("todayClicked"));
@@ -42,6 +47,28 @@
             <input name="eventName" placeholder=" Enter Event Name">
         </label>
     <input type="submit" value="Search">
+    </form>
+
+    <h1>Events</h1>
+    <% if (request.getAttribute("error") != null) { %>
+        <h2>There are no available events for this search</h2>
+    <% } %>
+
+    <form method="get"  action="event/tickets.html">
+        <% for (Event event : events) { %>
+        <button type="submit"
+                name="eventID"
+                value=<%=event.getId()%>>
+            <%=
+            event.getEventName() + " "
+                    + event.getCategory() + ""
+                    + event.getDate() + " "
+                    + event.getVenue() + " "
+                    + event.getCity() + " "
+            %>
+        </button>
+        <br><br>
+        <% } %>
     </form>
 
 </body>
