@@ -2,11 +2,11 @@ DROP DATABASE IF EXISTS `ticketselldb`;
 CREATE DATABASE IF NOT EXISTS `ticketselldb`;
 USE `ticketselldb`;
 SET foreign_key_checks = 1;
-drop table if exists `Users`;
-drop table if exists `Tickets`;
-drop table if exists `Events`;
+drop table if exists Users;
+drop table if exists Tickets;
+drop table if exists Events;
 
-CREATE TABLE IF NOT EXISTS `Users` (
+CREATE TABLE IF NOT EXISTS Users (
   `userID` int auto_increment PRIMARY KEY,
   `name` varchar(45) NOT NULL,
   `surname` varchar(45) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE IF NOT EXISTS `Events` (
+CREATE TABLE IF NOT EXISTS Events (
   `eventID` int auto_increment PRIMARY KEY,
   `eventName` varchar(45) NOT NULL,
   `venue` varchar(45) NOT NULL,
@@ -29,16 +29,16 @@ CREATE TABLE IF NOT EXISTS `Events` (
   `image` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `Tickets` (
-  `ticketID` int auto_increment PRIMARY KEY,
-  `ticketCode` varchar(45) NOT NULL,
-  `category` varchar(45) NOT NULL,
-  `price` double NOT NULL,
-  `user` int NOT NULL,
-  `event` int NOT NULL,
-  `ticketOwnerName` varchar(45) NOT NULL,
-  CONSTRAINT `FK_user_1` FOREIGN KEY (`user`) REFERENCES `Users` (`userID`),
-  CONSTRAINT `FK_event_1` FOREIGN KEY (`event`) REFERENCES `Events` (`eventID`)
+CREATE TABLE IF NOT EXISTS Tickets (
+  ticketID int auto_increment PRIMARY KEY,
+  ticketCode varchar(45) NOT NULL,
+  category varchar(45) NOT NULL,
+  price double NOT NULL,
+  user int NOT NULL,
+  event int NOT NULL,
+  ticketOwnerName varchar(45) NOT NULL,
+  CONSTRAINT FK_user_1 FOREIGN KEY (user) REFERENCES Users(userID),
+  CONSTRAINT FK_event_1 FOREIGN KEY (event) REFERENCES Events(eventID)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*insert into Tickets (ticketCode, category, price, user, event, ticketOwnerName) values ('123456789', 'VIP', 100, 1, 1, 'John Smith');
