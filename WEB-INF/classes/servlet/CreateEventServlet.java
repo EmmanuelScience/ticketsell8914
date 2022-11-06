@@ -5,6 +5,7 @@ import entities.Event;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -62,10 +63,12 @@ public class CreateEventServlet extends HttpServlet {
             ut.begin();
             em.persist(event);
             ut.commit();
-            out.println("<script>window.location.href='loggedAdmin.html';</script>");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/loggedAdmin.jsp");
+        requestDispatcher.forward(request, response);
 
     }
 }

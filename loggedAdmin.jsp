@@ -12,7 +12,7 @@
     <img src="images/logo.png" alt="TicketSell logo">
   </div>
   <div class="main_title">
-    <a href="loggedAdmin.html">ticketsell</a>
+    <a href="loggedAdmin.jsp">ticketsell</a>
   </div>
   <!-- REGISTERED HEADER  -->
 
@@ -28,6 +28,10 @@
 <div class="create_event"><H2>Create an event:</H2>
   <button onclick="window.location.href='registerEvent.html';">Click here to create an event</button>
 </div>
+<% if (request.getAttribute("error") != null) {%>
+<script>alert("Error while introducing data")</script>
+<%} %>
+
 <H2>Modify an event:</H2>
 <form class="admin_modify" METHOD="post" ACTION="modifyEvent.html">
   <label>Type here the event to modify:

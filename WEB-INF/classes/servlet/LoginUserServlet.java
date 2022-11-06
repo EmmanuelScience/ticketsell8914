@@ -39,7 +39,7 @@ public class LoginUserServlet extends HttpServlet {
         String servername = "localhost";
         String port = "3306";
         String username = "root";
-        String password = "chomsky";
+        String password = "1234";
 
         try {
 
@@ -77,7 +77,7 @@ public class LoginUserServlet extends HttpServlet {
                             session.setAttribute("user", sName);
                             session.setAttribute("userid", user_id);
                             if (Objects.equals(sName.toLowerCase(), "admin")) {
-                                sendDataToDisplay(request, response,  "/loggedAdmin.html", null);
+                                sendDataToDisplay(request, response,  "/loggedAdmin.jsp", null);
                             } else {
                                 sendDataToDisplay(request, response, "/loggedUser.jsp", null);
                             }

@@ -26,7 +26,7 @@ Integer id = Integer.parseInt(request.getAttribute("attributes").toString());
             <img id="user-profile-pic" src="images/avatars/default.png" alt="User's profile picture">
             <label id="username-label"></label>
         </div>
-        <button class="logout_button" onclick="window.location.href='loggedAdmin.html'">Log out</button>
+        <button class="logout_button" onclick="window.location.href='loggedAdmin.jsp'">Log out</button>
     </div>
 </header>
 <h1 id="page_title">Register Ticket in TicketSell</h1><br>

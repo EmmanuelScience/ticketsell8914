@@ -42,19 +42,17 @@ public class DeleteEventServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // deleting an event from the database
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<HTML>");
 
         String id = request.getParameter("id_del");
         if (Objects.equals(id, "")) {
-            out.println("<h2>Please, enter an event id.</h2>");
+            request.setAttribute("error", "No events found");
+
         }else {
-            int idInt = Integer.parseInt(id);
             try {
+                int idInt = Integer.parseInt(id);
                 Event event = em.find(Event.class, idInt);
                 if (event == null) {
-                    out.println("Event not found");
+                    request.setAttribute("error", "No events found");
                 } else {
                     ut.begin();
                     if (!em.contains(event)) {
@@ -62,14 +60,16 @@ public class DeleteEventServlet extends HttpServlet {
                     }
                     em.remove(event);
                     ut.commit();
-                    out.println("<script>window.location.href='loggedAdmin.html';</script>");
+
                 }
 
             } catch (Exception e) {
-                out.println("Error");
+                request.setAttribute("error", e.getMessage());
             }
         }
-        out.println("</HTML>");
-        out.close();
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/loggedAdmin.jsp");
+        requestDispatcher.forward(request, response);
+
     }
 }

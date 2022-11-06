@@ -141,7 +141,7 @@ public class RegisterUserServlet extends HttpServlet {
                 HttpSession ses = req.getSession();
                 ses.setAttribute("user",sName);
                 if (Objects.equals(sName.toLowerCase(),"admin")){
-                    out2.println("<script>window.location.href='loggedAdmin.html';</script>");
+                    out2.println("<script>window.location.href='loggedAdmin.jsp';</script>");
                 }else{
                     out2.println("<script> window.location.href='loggedUser.jsp';</script>");
                 }
