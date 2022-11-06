@@ -7,8 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="org.apache.commons.codec.binary.StringUtils" %>
-<%@ page import="org.apache.commons.codec.binary.Base64" %>
+<%@ page import="java.util.Base64" %>
 <html>
 <head>
     <title> Events </title>
@@ -36,7 +35,7 @@
                 %>
                 <img style="height: 50px;" src="<% StringBuilder sb = new StringBuilder();
 						sb.append("data:image/png;base64,");
-						sb.append(StringUtils.newStringUtf8(Base64.encodeBase64(event.getImage(), false)));
+						sb.append(Base64.getEncoder().encodeToString(event.getImage()));
 						out.print(sb.toString()); %>">
             </button>
             <br><br>

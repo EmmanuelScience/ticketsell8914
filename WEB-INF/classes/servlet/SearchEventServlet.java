@@ -16,7 +16,6 @@ import javax.transaction.UserTransaction;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.codec.binary.Base64;
 import static java.lang.System.out;
 
 @WebServlet({ "/SearchEventServlet", "/search.html", "/browse.html", "/event/tickets.html" })
