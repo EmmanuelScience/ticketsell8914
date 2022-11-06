@@ -9,6 +9,7 @@
       <root url="jar://$PROJECT_DIR$/lib/javax.ejb.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.15.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

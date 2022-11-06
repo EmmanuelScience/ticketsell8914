@@ -104,7 +104,7 @@ public class LoginUserServlet extends HttpServlet {
 
 
                 // 4 Execute the queries
-                ResultSet rs = st.executeQuery("SELECT * FROM users");
+                ResultSet rs = st.executeQuery("SELECT * FROM Users");
                 // 5 Iterate through the ResultSet obtained
                 int exists = 0;
                 while (rs.next()) {
